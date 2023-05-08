@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Ronaldo93/ecommercewebsite/issues"
   },
-  "homepage": "https://github.com/Ronaldo93/ecommercewebsite#readme"
+  "homepage": "https://github.com/Ronaldo93/ecommercewebsite#readme",
+  "dependencies": {
+    "mongoose": "^7.1.0"
+  }
 }
