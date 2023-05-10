@@ -9,20 +9,21 @@ const userSchema = new mongoose.Schema({
   // ==========Universal==========
     username: {
         type: String,
-        required: true,
+        // required: true,
         unique: true,
         match: /^[A-Za-z0-9]{8,15}$/
       },
-      password: {
-        type: String,
-        required: true,
-        match: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$/
-      },
+      // This is insecure! Validate on server-side and user-side instead
+      // password: {
+      //   type: String,
+      // required: true,
+      //   match: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$/
+      // },
 
       // profile picture storing on the database
       profile_picture: {
         type: Buffer,
-        required: true
+        // required: true
       },
       // ==========USER==========
       name: {
@@ -32,7 +33,7 @@ const userSchema = new mongoose.Schema({
       },
       customer_address: {
         type: String,
-        required: true
+        // required: true
       },
       // ==========BUSINESS==========
       businessname: {
@@ -53,29 +54,33 @@ const userSchema = new mongoose.Schema({
       distributionHub: {
         name: {
           type: String,
+          minlength: 5,
           // required: function() {
             // return this.role === 'shipper';
+            required: function() {
+              return this.role === 'shipper';
+            }
           },
         address: {
           type: String,
+          minlength: 5,
           // required: function() {
           //   return this.role === 'shipper';
+          required: function() {
+            return this.role === 'shipper';
+          }
         },
-        minlength: 5,
-        required: function() {
-          return this.role === 'shipper';
-        }
       },
       // ==========ROLE==========
       role: {
         type: String,
         enum: ['vendor', 'customer', 'shipper'],
-        required: true
+        // required: true
       },
       // ==========Hashed Password==========
       encrypted_password: {
         type: String, 
-        required: true
+        // required: true
       }
 });
 

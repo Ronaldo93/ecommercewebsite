@@ -34,10 +34,6 @@ const productSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
-    product_stock: {
-        type: Number,
-        required: true,
-    },
 });
 
 
