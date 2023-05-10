@@ -1,17 +1,19 @@
 const express = require('express');
 const app = express();
 
+// MODULES
 // express-validator (validate)
 const { check, validationResult } = require('express-validator');
 
 // router (routing user)
 const router = express.Router();
 
-// signup procedure
+// signup procedure - auth module, hash module
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
+// MAIN PART
 // import user model
 const User = require('../model/user');
 
