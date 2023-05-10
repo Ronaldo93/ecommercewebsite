@@ -1,15 +1,13 @@
 const express = require('express');
 const app = express();
 
-// TODO: Fix the validation
-
-// express-validator
+// express-validator (validate)
 const { check, validationResult } = require('express-validator');
 
-// router
+// router (routing user)
 const router = express.Router();
 
-// signup
+// signup procedure
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
@@ -17,7 +15,7 @@ const bcrypt = require('bcrypt');
 // import user model
 const User = require('../model/user');
 
-
+// regex for password
 const passwordregex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$/;
 
 // conf localstrategy
@@ -42,11 +40,17 @@ passport.use(new LocalStrategy(function(username, password, done) {
 }
 ));
 
-
-router.post('/', [check('password', 'Password must include one uppercase character, one lowercase character, a number, and a special character.').matches(passwordregex)], passport.authenticate('local', { failureRedirect: '/register' }), function(req, res) {
-    console.log(req.password);
-    res.redirect('/');
-});   
+// validate & upload data -> database
+router.post('/', 
+    [check('password', 'Password must include one uppercase character, one lowercase character, a number, and a special character.').matches(passwordregex)],
+    (req, res, next) => {
+    // Handle validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+}, passport.authenticate('local', { successRedirect: '/', failureRedirect: '/register' }));  
 
 module.exports = router;
 
