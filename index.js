@@ -31,10 +31,12 @@ const port = 3000;
 
 // route define
 const signup = require('./src/routes/signup');
-const home = require('./src/routes/home');
+// const home = require('./src/routes/home');
 
 // route
-app.use('/home', home);
+app.use('/home', (req, res) => {
+    res.render('index');
+});
 app.use('/signup', signup);
 
 // mongoose
