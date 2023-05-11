@@ -24,7 +24,7 @@ const path = require('path');
 app.use(express.json());
 
 // Using public 
-app.use(express.static('public'));
+app.use(express.static(path.join (__dirname, 'public')));
 
 //ejs use
 // set views folder
@@ -39,6 +39,9 @@ const signup = require('./src/routes/signup');
 // route
 app.use('/home', (req, res) => {
     res.render('index');
+});
+app.use('/product', (req, res) => {
+    res.render('product');
 });
 app.use('/signup', signup);
 
