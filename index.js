@@ -24,7 +24,11 @@ const path = require('path');
 app.use(express.json());
 
 // Using public 
+<<<<<<< HEAD
 app.use(express.static(path.join (__dirname, 'public')));
+=======
+app.use(express.static (path.join (__dirname, 'public')));
+>>>>>>> 02bdec92759c935f4f8bcb0c54a724ec021dc779
 
 //ejs use
 // set views folder
@@ -40,9 +44,13 @@ const signup = require('./src/routes/signup');
 app.use('/home', (req, res) => {
     res.render('index');
 });
+<<<<<<< HEAD
 app.use('/product', (req, res) => {
     res.render('product');
 });
+=======
+
+>>>>>>> 02bdec92759c935f4f8bcb0c54a724ec021dc779
 app.use('/signup', signup);
 
 // mongoose
