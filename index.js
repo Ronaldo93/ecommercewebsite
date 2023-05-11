@@ -45,10 +45,10 @@ app.use('/product', (req, res) => {
 });
 app.use('/signup', signup);
 
-app.use('/:id',(req,res)=> {
-    const resourId= req.params.id;
-    res.render('test');
-});
+// app.use('/:id',(req,res)=> {
+//     const resourId= req.params.id;
+//     res.render('test');
+// });
 // mongoose
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -65,3 +65,31 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+
+
+// Retrieve products from the database
+const Product = require('./src/model/test');
+let category_items = [];
+
+// Retrieve products from the database
+Product.find({})
+  .then((products) => {
+    category_items = products; // Assign the products to the category_items array
+
+    // Loop through category_items and define routes
+    category_items.forEach((item) => {
+      const title = item.title.toLowerCase().replace(/\s+/g, '-');
+
+      app.get(`/${title}`, (req, res) => {
+        res.render('test', { item });
+      });
+    });
+
+    // Export the category_items array after it has been populated
+    module.exports = category_items;
+    console.log(category_items);
+  })
+  .catch((error) => {
+    console.log('Error retrieving products:', error);
+  });

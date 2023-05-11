@@ -23,13 +23,15 @@ $(document).ready(function () {
   
       if (item.title.toLowerCase().includes(searchTerm)) {
         var itemContent =
-          '<div class="product-card"><b>' +
-          item.title +
-          '</b><br><img src="' +
-          item.thumbnail +
-          '" height="300px" width="300px" alt="shoe thumbnail"><b>$' +
-          item.price +
-          "</b></div>";
+    '<div class="product-card"><b>' +
+    item.title +
+    '</b><br><img src="' +
+    item.thumbnail +
+    '" height="300px" width="300px" alt="shoe thumbnail"><div><b>$' +
+    item.price +
+    '</b></div><div class="button"><a href="http://localhost:3000/' +
+    item.title.toLowerCase().replace(/\s+/g, '-') +
+    '">View Product</a></div></div>';
   
         $("#display-items-div").append(itemContent);
       }
