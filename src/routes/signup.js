@@ -39,7 +39,7 @@ passport.use(new LocalStrategy({passReqToCallback: true
         return done(null, false, { message: "Username already taken." });
         }
 
-        // define what data to sent
+        // define what data to put into 
         const newUser = new User({
         name: name,
         username: username,

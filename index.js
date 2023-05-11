@@ -40,6 +40,7 @@ const signup = require('./src/routes/signup');
 app.use('/home', (req, res) => {
     res.render('index');
 });
+
 app.use('/signup', signup);
 
 // mongoose
