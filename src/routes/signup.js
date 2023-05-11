@@ -76,10 +76,15 @@ passport.use("local-signup", new LocalStrategy(
     })
     }));
 
+// GET the website
+router.get('/', (req,res) => {
+    res.render('signup_demo')
+})
+
 
 // TODO Possibly optimize the code -> middleware
 // validate & upload data -> database
-router.post('/newUser', 
+router.post('/new', 
     [check('password', 'Password must include one uppercase character, one lowercase character, a number, and a special character.').matches(passwordregex)],
     (req, res, next) => {
     // Handle validation errors

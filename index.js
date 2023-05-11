@@ -19,9 +19,9 @@ const path = require('path');
 // app.use(passport.session()); 
 // ----------------------------------------------------------------
 
-
-// Express's built-in JSON parser 
-app.use(express.json());
+// body-parser
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Using public 
 app.use(express.static(path.join(__dirname, 'src', 'public')));
