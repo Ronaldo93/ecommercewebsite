@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/detail.css">
+    <script src="/js/product.js"></script>
+</head>
+<body>
+    <div id="contain">
+       <!-- <div> <img src="/img/solo_2.png" alt=""></div> -->
+       <div> <img src="<%=  category_items[1].thumbnail %>" alt=""></div>
+       <div id="information">
+           <div id="id"><h3>ID: <%=  category_items[1].id %></h3></div>
+           <div id="title"><h1>Title: <%=  category_items[1].title %></h1></div>
+           <div id="price"><h3>Price: $<%=  category_items[1].price %></h3></div>
+           <div><h3>Description</h3></div>
+           <div id="description"><%=  category_items[1].description %></div>
+    </div>
+</body>
+</html>

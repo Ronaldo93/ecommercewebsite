@@ -45,6 +45,10 @@ app.use('/product', (req, res) => {
 });
 app.use('/signup', signup);
 
+app.use('/:id',(req,res)=> {
+    const resourId= req.params.id;
+    res.render('test');
+});
 // mongoose
 const mongoose = require('mongoose');
 const passport = require('passport');
