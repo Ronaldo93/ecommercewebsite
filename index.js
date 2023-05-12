@@ -37,15 +37,17 @@ const port = 3000;
 const signup = require('./src/routes/signup');
 // const home = require('./src/routes/home');
 
+
 // route
 app.use('/home', (req, res) => {
     res.render('index');
 });
-app.use('/product', (req, res) => {
-    res.render('product');
-});
 app.use('/signup', signup);
 
+// app.use('/:id',(req,res)=> {
+//     const resourId= req.params.id;
+//     res.render('test');
+// });
 // mongoose
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -65,4 +67,39 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 // listening on 3000
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
+});
+
+
+
+// Retrieve products from the database
+const Product = require('./src/model/test');
+
+// Retrieve products from the database
+Product.find({})
+  .then((products) => {
+    // Loop through products and define routes
+    products.forEach((product) => {
+      const id = product._id; // Get the product ID
+
+      app.get(`/${id}`, (req, res) => {
+        res.render('detail', { product });
+      });
+    });
+  })
+  .catch((error) => {
+    console.log('Error retrieving products:', error);
+  });
+  // Product.find()
+  // .then((products) => {
+  //     console.log(products);
+  // })
+  // .catch((error) => {console.log(error.message)});
+ 
+
+  app.get('/product', (req, res) => {
+    Product.find()
+    .then((products) => {
+        res.render('product', {products: products});
+    })
+    .catch((error) => console.log(error.message));
 });
