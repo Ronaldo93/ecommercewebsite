@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 
 // session
-// const session = require('express-session');
+const session = require('express-session');
 
 
 // WILL consider after fully developing the features--------------
@@ -22,6 +22,7 @@ const path = require('path');
 // body-parser
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Using public 
 app.use(express.static(path.join(__dirname, 'src', 'public')));
@@ -48,6 +49,10 @@ app.use('/signup', signup);
 // mongoose
 const mongoose = require('mongoose');
 const passport = require('passport');
+
+// passport
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // uri for mongodb atlas
 const uri = "mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority";

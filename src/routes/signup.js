@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const imagehandler = require('../middleware/image');
+const checkpass = require('../middleware/checkpass');
+
 
 // MODULES
 // express-validator (validate)
@@ -13,94 +16,57 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
-// image
-const multer = require('multer');
-
 // MAIN PART
-const imageTempMemory = multer.memoryStorage();
-const upload = multer({ storage: imageTempMemory }).single('image');
-
-
-// import user model
+// 1. import user model
 const User = require('../model/user');
 
-// regex for password
-const passwordregex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$/;
 
-// conf localstrategy
-passport.use("local-signup", new LocalStrategy(
-    {
-        passReqToCallback: true
-    },
-    async function(req, username, password, done) {
-        // input
-        const role = req.body.role;
-        // TODO: Find a way to import picture -> mongoose
-        const name = req.body.name;
-        const customer_address = req.body.customer_address;
-        const businessname = req.body.businessname;
-        const businessaddress = req.body.businessaddress;
-        const distributionHub = req.body.distributionHub;
-        upload(req, res, async (err) => {
-        if (err) {
-            return done(err);
+// 2. passport for registeration
+passport.use('local.signup', new LocalStrategy({
+        usernameField: 'username',
+        passwordField: 'password',
+        passReqToCallback: true,
+    }, (req, username, password, done) => {
+    // check if user exists
+    User.findOne({ 'username': username }).then((user) => {
+        if (user) {
+        return done(null, false, { message: 'Username already exists.' });
         }
-        // find the user
-        User.findOne({ username: username})
-        .then(async (user) => {
-            // if user not found
-            if (user) {
-            return done(null, false, { message: "Username already taken." });
-            }
-            // upload image
-            const imageUpload = { data: new Buffer.from(req.file.buffer, 'base64'), contentType: req.file.mimetype }
-
-            // define what data to put into 
-            const newUser = new User({
-            name: name,
+        // create new user
+        const newUser = new User({
             username: username,
-            role: role,
-            profile_picture: imageUpload,
-            customer_address: customer_address,
-            businessname: businessname,
-            businessaddress: businessaddress,
-            distributionHub: distributionHub, 
             encrypted_password: bcrypt.hashSync(password, 10),
-            });
-            newUser.save(); 
-            return done(null, newUser);
-        }).catch((err) => {
-            console.log(err)    
-            return done(err);
+            profile_picture: req.body.imageBase64,
         });
+        newUser.save();
+        return done(null, newUser);
+    }).catch((err) => {
+        console.log(err);
+        return done(err);
     })
-    }));
+}));
 
-// GET the website
-router.get('/', (req,res) => {
-    res.render('signup_demo')
-})
+// GET route
+router.get('/', (req, res) => {
+    res.render('signup_demo');
+});
 
-
-// TODO Possibly optimize the code -> middleware
 // validate & upload data -> database
-router.post('/new', 
-    [check('password', 'Password must include one uppercase character, one lowercase character, a number, and a special character.').matches(passwordregex)],
-    (req, res, next) => {
-    // Handle validation errors
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-}, passport.authenticate('local-signup', {session: false}, (err, user, info) => {
-if (err) {
-    return next(err);
-}
-if (!user)
-    return res.status(400).json({message: 'Signup failed'})
-}
-));  
-module.exports = router;
+router.post('/new', checkpass, imagehandler, (req, res, next) => {
+    // debug
+    const JSONReq = JSON.stringify(req.body);
+    // console.log(req.body);
+    // const parsedUserInfo = JSON.parse(JSONReq.signupinfo);
+    // req.body.username = parsedUserInfo.username;
+    // req.body.password = parsedUserInfo.password;
 
+    passport.authenticate('local.signup', {session: false}, function (err, user, info) {
+        console.log('auth');
+        console.log(err);
+        console.log(user);
+        console.log(info)
+    })(req, res, next);
+});
+
+module.exports = router;
 

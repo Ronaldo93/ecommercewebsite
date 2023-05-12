@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
-// connect to mongoose
-// mongoose.connect('mongodb://localhost:3000/customer', { useNewUrlParser: true, useUnifiedTopology: true })
-// .then(() => console.log('Connected to MongoDB'))
-// .catch(err => console.error('Error connecting to MongoDB', err));
+
 
 // create a schema
 const userSchema = new mongoose.Schema({
@@ -20,9 +17,9 @@ const userSchema = new mongoose.Schema({
       //   match: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$/
       // },
 
-      // profile picture storing on the database
+      // profile picture storing on the database - base64
       profile_picture: {
-        type: Buffer,
+        type: String,
         // required: true
       },
       // ==========USER==========

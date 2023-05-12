@@ -1,44 +1,22 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 <body>
-
-<h2>HTML Form</h2>
-
-<form id="myForm" enctype="multipart/form-data">
-  <label for="username">Username:</label><br>
-  <input type="text" id="username" name="username"><br>
-  <label for="password">Password:</label><br>
-  <input type="password" id="password" name="password"><br>
-  <label for="file">Select a file:</label><br>
-  <input type="file" id="file" name="file"><br><br>
-  <input type="button" value="Submit" onclick="submitForm()">
-</form>
-
-<script>
-function submitForm() {
-  // Create a new FormData instance
-  var formData = new FormData();
-
-  // Get the file
-  var fileField = document.querySelector('input[type="file"]');
-
-  // Add the file to the form data
-  formData.append('file', fileField.files[0]);
-
-  // Get the other fields and convert them to JSON
-  var username = document.getElementById('username').value;
-  var password = document.getElementById('password').value;
-  var otherFields = JSON.stringify({ username: username, password: password });
-
-  // Add the other fields to the form data
-  formData.append('otherFields', otherFields);
-
-  // Send the form data
-  var request = new XMLHttpRequest();
-  request.open("POST", "http://example.com/submit", true);
-  request.send(formData);
-}
-</script>
-
+    <form action="/signup/new" method="POST" enctype="multipart/form-data">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br>
+      
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br>
+      
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image"><br>
+      
+        <input type="submit" value="Submit">
+      </form>
 </body>
 </html>
