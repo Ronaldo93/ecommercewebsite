@@ -5,7 +5,6 @@ const path = require('path');
 // session
 const session = require('express-session');
 
-
 // WILL consider after fully developing the features--------------
 // config session for passport
 // app.use(session({
@@ -14,8 +13,8 @@ const session = require('express-session');
 //     saveUninitialized: false
 // }))
 
-// config passport globally
-// app.use(passport.initialize());
+
+
 // app.use(passport.session()); 
 // ----------------------------------------------------------------
 
@@ -43,17 +42,12 @@ app.use('/home', (req, res) => {
     res.render('index');
 });
 app.use('/signup', signup);
-
-// app.use('/:id',(req,res)=> {
-//     const resourId= req.params.id;
-//     res.render('test');
-// });
 // mongoose
 const mongoose = require('mongoose');
 const passport = require('passport');
 
 // passport
-// app.use(passport.initialize());
+app.use(passport.initialize());
 // app.use(passport.session());
 
 // uri for mongodb atlas
