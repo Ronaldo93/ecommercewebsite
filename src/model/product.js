@@ -4,6 +4,13 @@ const router = express.Router();
 // mongoose
 const mongoose = require('mongoose');
 
+const uri = "mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority";
+
+// connect to mongodb server
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Error connecting to MongoDB', err));
+    
 const products = new mongoose.Schema({
     id: Number,
     price: Number,

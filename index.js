@@ -103,3 +103,18 @@ Product.find({})
     })
     .catch((error) => console.log(error.message));
 });
+
+// Use the `express.urlencoded` middleware to parse incoming form data
+app.use(express.urlencoded({ extended: true }));
+
+app.get('/addproduct', (req, res) => {
+  res.render('add_product');
+});
+
+app.post('/products', (req, res) => {
+  console.log(req.body);
+  const product = new Product(req.body);
+  product.save()
+    .then(() => res.redirect('/product'))
+    .catch(error => res.send(error));
+});
