@@ -4,40 +4,21 @@ const router = express.Router();
 // mongoose
 const mongoose = require('mongoose');
 
-
-// Product schema
-const productSchema = new mongoose.Schema({
-    // ==========Universal==========   
-    product_name: {
-        type: String,
-        required: true,
-    },
-    product_description: {
-        type: String,
-        required: true,
-    },
-    product_price: {
-        type: Number,
-        required: true,
-    },
-    product_image: {
-        type: Buffer,
-        required: true,
-    },
-    product_sku: {
-        type: String,
-        required: true,
-    },
-    product_vendor: {
+const products = new mongoose.Schema({
+    id: Number,
+    price: Number,
+    title: String,
+    thumbnail: String,
+    description: String,
+    vendor: {
         // refer to user table
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
+        ref: 'User'
     },
-});
+})
 
 
-// Product model
-const Product = mongoose.model('Product', productSchema);
+
+const Product = mongoose.model('Product', products);
 
 module.exports = Product;

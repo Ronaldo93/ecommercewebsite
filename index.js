@@ -72,7 +72,7 @@ app.listen(port, () => {
 
 
 // Retrieve products from the database
-const Product = require('./src/model/test');
+const Product = require('./src/model/product');
 
 // Retrieve products from the database
 Product.find({})

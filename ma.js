@@ -1,5 +1,5 @@
 console.log('hot');
-const Product = require('./src/model/test');
+const Product = require('./src/model/product');
 console.log('honn');
 
 Product.find({})

@@ -16,21 +16,25 @@ const orderSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    product_sku: {
+    id: {
         // ref
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
     },
-    product_name: {
+    title: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
     },
+    vendor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
+    // order_quantity: {
+    //     type: Number,
+    //     required: true,
+    // },
     order_status: {
         type: String,
-        required: true,
-    },
-    order_quantity: {
-        type: Number,
         required: true,
     },
     // order price
