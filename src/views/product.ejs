@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" defer></script>
-  <!-- <script defer src="index.js"></script> -->
   <script defer src="/js/product.js"></script>
   <script defer src="/js/search.js"></script>
   <link rel="stylesheet" href="/css/product.css">
@@ -14,48 +12,45 @@
 </head>
 
 <body>
-
   <div class="container">
-
-      <div class="fliter">
-
-        <div>
-          <h1>Product Search</h1>
-
-          <input type="text" id="search-input" placeholder="Enter title...">
-          <button id="search-button">Search</button>
-
-        </div>
-
-        <div class="card-body">
-          <form id="price-range-form">
-            <h4>Price:</h4>
-            <div>
-              <label for="min-price" class="form-label">Min price: </label>
-              <span id="min-price-txt">$0</span>
-              <input type="range" class="form-range" min="0" max="99" id="min-price" step="1" value="0">
-            </div>
-
-
-            <div>
-              <label for="max-price" class="form-label">Max price: </label>
-              <span id="max-price-txt">$100</span>
-              <input type="range" class="form-range" min="1" max="100" id="max-price" step="1" value="100">
-            </div>
-          </form>
-        </div>
+    <div class="filter">
+      <div id="search">
+        <h1>Product Search</h1>
+        <input type="text" id="search-input" placeholder="Enter title...">
+        <button id="search-button">Search</button>
       </div>
-      <div class="card">
-        <div class="card-body">
-          <div id="display-items-div">
-
+      <div id="form">
+        <form id="price-range-form">
+          <h4>Price:</h4>
+          <div>
+            <label for="min-price" class="form-label">Min price: </label>
+            <input type="number" class="form-input" id="min-price" step="1" placeholder="Min price">
           </div>
+          <div>
+            <label for="max-price" class="form-label">Max price: </label>
+            <input type="number" class="form-input" id="max-price" step="1" placeholder="Max price">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div id="display-items-div">
+          <% products.forEach(function(product){ %>
+            <div class="product-card" data-price="<%= product.price %>">
+              <b><%= product.title %></b><br>
+              <img src="<%= product.thumbnail %>" alt="productss" width="100%" height="300px">
+              <div>
+                <b><%= product.price %> $</b>
+              </div>
+              <div class="button">
+                <a href="http://localhost:3000/<%= product._id %>">View Product</a>
+              </div>
+            </div>
+          <% }); %>
         </div>
       </div>
-
-   
-
+    </div>
   </div>
 </body>
-
 </html>

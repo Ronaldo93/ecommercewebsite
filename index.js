@@ -36,12 +36,10 @@ const port = 3000;
 const signup = require('./src/routes/signup');
 // const home = require('./src/routes/home');
 
+
 // route
 app.use('/home', (req, res) => {
     res.render('index');
-});
-app.use('/product', (req, res) => {
-    res.render('product');
 });
 app.use('/signup', signup);
 
@@ -70,26 +68,33 @@ app.listen(port, () => {
 
 // Retrieve products from the database
 const Product = require('./src/model/test');
-let category_items = [];
 
 // Retrieve products from the database
 Product.find({})
   .then((products) => {
-    category_items = products; // Assign the products to the category_items array
+    // Loop through products and define routes
+    products.forEach((product) => {
+      const id = product._id; // Get the product ID
 
-    // Loop through category_items and define routes
-    category_items.forEach((item) => {
-      const title = item.title.toLowerCase().replace(/\s+/g, '-');
-
-      app.get(`/${title}`, (req, res) => {
-        res.render('test', { item });
+      app.get(`/${id}`, (req, res) => {
+        res.render('detail', { product });
       });
     });
-
-    // Export the category_items array after it has been populated
-    module.exports = category_items;
-    console.log(category_items);
   })
   .catch((error) => {
     console.log('Error retrieving products:', error);
   });
+  // Product.find()
+  // .then((products) => {
+  //     console.log(products);
+  // })
+  // .catch((error) => {console.log(error.message)});
+ 
+
+  app.get('/product', (req, res) => {
+    Product.find()
+    .then((products) => {
+        res.render('product', {products: products});
+    })
+    .catch((error) => console.log(error.message));
+});
