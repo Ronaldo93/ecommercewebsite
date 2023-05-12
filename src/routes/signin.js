@@ -23,15 +23,15 @@ const User = require('../model/user');
 
 // 2. passport for registeration
 passport.use('local_signup', new LocalStrategy({
-        usernameField: 'username',
-        passwordField: 'password',
-        passReqToCallback: true,
-    }, (req, username, password, done) => {
+    usernameField: 'username',
+    passwordField: 'password',
+    passReqToCallback: true,
+}, (req, username, password, done) => {
     // define field for register
     // check if user exists
     User.findOne({ 'username': username }).then((user) => {
         if (user) {
-        return done(null, false, { message: 'Username already exists.' });
+            return done(null, false, { message: 'Username already exists.' });
         }
         // create new user
         const newUser = new User({
@@ -51,7 +51,7 @@ passport.use('local_signup', new LocalStrategy({
 // @desc render signup page
 // @access public
 router.get('/', (req, res) => {
-    res.render('signup_demo');
+    res.render('signin_demo');
 });
 
 // validate & upload data -> database
@@ -75,7 +75,7 @@ router.post('/new', checkpass, imagehandler, (req, res, next) => {
                 return res.redirect('/signup');
             }
             return res.redirect('/signin');
-    })(req, res, next);
+        })(req, res, next);
 });
 
 module.exports = router;
