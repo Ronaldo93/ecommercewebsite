@@ -35,6 +35,7 @@ passport.use('local_signup', new LocalStrategy({
         }
         // create new user
         const newUser = new User({
+            name: req.body.name,
             username: username,
             encrypted_password: bcrypt.hashSync(password, 10),
             profile_picture: req.body.imageBase64,

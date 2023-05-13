@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
       },
       customer_address: {
         type: String,
-        // required: true
+        // required: function () { return this.role === 'customer' },
       },
       // ==========BUSINESS==========
       businessname: {
