@@ -14,11 +14,11 @@ const router = express.Router();
 // signup procedure - auth module, hash module
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // MAIN PART
 // 1. import user model
-const User = require('../model/user');
+const User = require('../model/usermodel');
 
 
 // 2. passport for registeration
@@ -54,7 +54,9 @@ router.get('/', (req, res) => {
     res.render('signup_demo');
 });
 
-// validate & upload data -> database
+//@route POST /signup/new
+//@desc register new user
+//@access public
 router.post('/new', checkpass, imagehandler, (req, res, next) => {
     // debug
     JSON.stringify(req.body);

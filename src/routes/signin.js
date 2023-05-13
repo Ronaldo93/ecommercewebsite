@@ -1,12 +1,6 @@
 const express = require('express');
 const app = express();
-const imagehandler = require('../middleware/image');
-const checkpass = require('../middleware/checkpass');
-
-
 // MODULES
-// express-validator (validate)
-const { check, validationResult } = require('express-validator');
 
 // router (routing user)
 const router = express.Router();
@@ -14,15 +8,14 @@ const router = express.Router();
 // signup procedure - auth module, hash module
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // MAIN PART
 // 1. import user model
-const User = require('../model/user');
+const User = require('../model/usermodel');
 
-
-// 2. passport for registeration
-passport.use('local_signup', new LocalStrategy({
+// 2. passport for login
+passport.use('local_signin', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true,
@@ -31,38 +24,34 @@ passport.use('local_signup', new LocalStrategy({
     // check if user exists
     User.findOne({ 'username': username }).then((user) => {
         if (user) {
-            return done(null, false, { message: 'Username already exists.' });
+            // compare password
+            if (!bcrypt.compareSync(password, user.encrypted_password)) {
+                return done(null, false, {message: 'Incorrect password.'});
+            }
+            return done(null, user);
         }
-        // create new user
-        const newUser = new User({
-            username: username,
-            encrypted_password: bcrypt.hashSync(password, 10),
-            profile_picture: req.body.imageBase64,
-        });
-        newUser.save();
-        return done(null, newUser);
     }).catch((err) => {
         console.log(err);
         return done(err);
     })
 }));
 
-// @route GET /signup
-// @desc render signup page
+// @route GET /login
+// @desc render login page
 // @access public
 router.get('/', (req, res) => {
     res.render('signin_demo');
 });
 
 // validate & upload data -> database
-router.post('/new', checkpass, imagehandler, (req, res, next) => {
-    // debug
+router.post('/auth', (req, res, next) => {
+    // convert json
     JSON.stringify(req.body);
-    passport.authenticate('local_signup',
+    passport.authenticate('login_signin',
         {
             session: false,
-            failureRedirect: '/signup',
-            successRedirect: '/signup',
+            failureRedirect: '/signin',
+            failureFlash: true,
         }, function (err, user, info) {
             console.log('auth');
             console.log(err);
