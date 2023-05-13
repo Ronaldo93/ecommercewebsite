@@ -7,15 +7,11 @@ const session = require('express-session');
 
 // WILL consider after fully developing the features--------------
 // config session for passport
-// app.use(session({
-//     secret:'what sa fuk',
-//     resave: false,
-//     saveUninitialized: false
-// }))
-
-
-
-// app.use(passport.session()); 
+app.use(session({
+    secret:'what sa fuk',
+    resave: false,
+    saveUninitialized: false
+}));
 // ----------------------------------------------------------------
 
 // body-parser
@@ -35,20 +31,21 @@ const port = 3000;
 // route define
 const signup = require('./src/routes/signup');
 // const home = require('./src/routes/home');
-
+const signin = require('./src/routes/signin');
 
 // route
 app.use('/home', (req, res) => {
     res.render('index');
 });
 app.use('/signup', signup);
+app.use('/signin', signin);
 // mongoose
 const mongoose = require('mongoose');
 const passport = require('passport');
 
 // passport
 app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.session());
 
 // uri for mongodb atlas
 const uri = "mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority";
@@ -63,10 +60,8 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
-
-
 // Retrieve products from the database
-const Product = require('./src/model/product');
+const Product = require('./src/model/productmodel');
 
 // Retrieve products from the database
 Product.find({})
