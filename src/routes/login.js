@@ -47,7 +47,8 @@ router.get('/', (req, res) => {
 router.post('/auth', (req, res, next) => {
     // convert json
     JSON.stringify(req.body);
-    passport.authenticate('login_signin',
+    console.log(req.body);
+    passport.authenticate('local_signin',
         {
             failureRedirect: '/signin',
             failureFlash: true,
@@ -62,9 +63,14 @@ router.post('/auth', (req, res, next) => {
             if (!user) {
                 return res.redirect('/signup');
             }
-            return res.redirect('/signin');
+            // set username in cookies
+            req.session.username = user.username;
+            // set role in cookies
+            req.session.role = user.role;
+            return res.redirect('/');
         })(req, res, next);
 });
+
 
 module.exports = router;
 

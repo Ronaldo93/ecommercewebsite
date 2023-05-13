@@ -10,7 +10,11 @@ const session = require('express-session');
 app.use(session({
     secret:'what sa fuk',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { 
+      maxAge: 3600000, // 1 hour
+      expires: new Date(Date.now() + 3600000) // 1 hour
+    }
 }));
 // ----------------------------------------------------------------
 
@@ -31,14 +35,15 @@ const port = 3000;
 // route define
 const signup = require('./src/routes/signup');
 // const home = require('./src/routes/home');
-const signin = require('./src/routes/signin');
+const login = require('./src/routes/login');
 
 // route
-app.use('/home', (req, res) => {
+app.use('/index', (req, res) => {
     res.render('index');
 });
+
 app.use('/signup', signup);
-app.use('/signin', signin);
+app.use('/login', login);
 // mongoose
 const mongoose = require('mongoose');
 const passport = require('passport');

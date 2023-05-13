@@ -1,23 +1,120 @@
-img {
-    width: 500px;
-    height: 500px;
-}
-#contain {
+/* Apply styles to the entire page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style for the container */
+  #contain {
     display: flex;
-    justify-content: space-evenly;
-}
-#contain div {
-    width: 30%;
-}
-#information {
-    border: solid black;
-}
-#information div {
-    width: 100%;
-}
-#price {
-    color: red;
-}
-#description {
-    font-size: 20px;
-}
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  /* Style for the product image */
+  #contain img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  /* Style for the product information section */
+  #information {
+    margin-left: 20px;
+    flex-grow: 1;
+  }
+  
+  /* Style for the form */
+  #productForm {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style for the form heading */
+  #productForm h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  /* Style for the form subheading */
+  #productForm h2 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  /* Style for the product description */
+  #description {
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+  }
+  
+  /* Style for the price display */
+  #price {
+    margin-top: 10px;
+  }
+  
+  /* Style for the buy now section */
+  #productForm div:nth-child(6) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  /* Style for the user name input */
+  #userName {
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Style for the distribution hub select */
+  #distributionHub {
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Style for the quantity input */
+  #quantity {
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Style for the address input */
+  #address {
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ffffff;
+  }
+  
+  /* Style for the submit button */
+  #button {
+    margin-top: 10px;
+  }
+  
+  #button button {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #ec6a08;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  #button button:hover {
+    background-color: #eb690d;
+  }
+  
