@@ -15,6 +15,17 @@ const bcrypt = require('bcryptjs');
 // 1. import user model
 const User = require('../model/usermodel');
 
+app.use(session({ 
+    secret:'whatdkuk',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+// app.use(passport.authenticate('session'));
+
+
 // 2. passport for login
 passport.use('local_signin', new LocalStrategy({
     usernameField: 'username',
@@ -49,10 +60,11 @@ passport.deserializeUser((req, user, done) => {
     // Look up user id in database. 
     User.findById(user.id).then((user) => {
         console.log('deserialize', user);
-        if (!user) {
-            return done(null, false);
-        }
-        return done(null, {id: user.id, role: user.role, username: user.username});
+        done(null, {id: user.id, role: user.role, username: user.username});
+        console.log('done');
+    }).catch((err) => {
+        console.log('error deserializing user', err);
+        done(null, {id: user.id, role: user.role, username: user.username});
     });
   });
 
@@ -74,15 +86,14 @@ router.post('/auth', (req, res, next) => {
         {
             failureRedirect: '/signin',
             failureFlash: true,
-            successRedirect: '/signin/fun',
+            successRedirect: '/',
         })(req, res, next);
 });
 
-
-router.get('/fun', (req, res) => {
+router.get('/test', (req, res) => {
     console.log(req.user);
     res.send(req.user);
-});
+    });
 
 
 module.exports = router;
