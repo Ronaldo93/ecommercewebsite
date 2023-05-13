@@ -35,12 +35,12 @@ passport.use('local_signin', new LocalStrategy({
     })
 }));
 
-passport.serializeUser(function (req, user, done) {
+passport.serializeUser(function (user, done) {
     console.log('serialize', user);
     done(null, {id: user.id, role: user.role, username: user.username});
 });
 
-passport.deserializeUser((req, user, done) => {
+passport.deserializeUser((user, done) => {
     console.log('deserialize')
     // Look up user id in database. 
     User.findById(user.id).then((user) => {
@@ -64,6 +64,7 @@ router.get('/', (req, res) => {
 router.post('/auth', (req, res, next) => {
     passport.authenticate('local_signin',
         {
+            session: true,
             failureRedirect: '/signin',
             failureFlash: true,
             successRedirect: '/signin/test',
