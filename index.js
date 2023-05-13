@@ -44,6 +44,9 @@ app.use('/index', (req, res) => {
 
 app.use('/signup', signup);
 app.use('/login', login);
+
+// testing protected route
+
 // mongoose
 const mongoose = require('mongoose');
 const passport = require('passport');
