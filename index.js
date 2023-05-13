@@ -153,3 +153,12 @@ app.get('/viewproduct', (req, res) => {
   })
   .catch((error) => console.log(error.message));
 });
+
+const Cart = require('./src/model/cartmodel');
+app.post('/carts', (req, res) => {
+  console.log(req.body);
+  const cart = new Cart(req.body);
+  cart.save()
+    .then(() => res.redirect('/product'))
+    .catch(error => res.send(error));
+});
