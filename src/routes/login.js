@@ -3,6 +3,11 @@ const app = express();
 // MODULES
 // Session
 const session = require('express-session');
+app.use(session({ 
+    secret:'whatdkuk',
+    resave: false,
+    saveUninitialized: false
+}));
 // router (routing user)
 const router = express.Router();
 
@@ -15,11 +20,6 @@ const bcrypt = require('bcryptjs');
 // 1. import user model
 const User = require('../model/usermodel');
 
-app.use(session({ 
-    secret:'whatdkuk',
-    resave: false,
-    saveUninitialized: false
-}));
 
 app.use(passport.initialize());
 app.use(passport.session());
