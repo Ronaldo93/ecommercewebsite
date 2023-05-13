@@ -38,6 +38,16 @@ passport.use('local_signup', new LocalStrategy({
             username: username,
             encrypted_password: bcrypt.hashSync(password, 10),
             profile_picture: req.body.imageBase64,
+            role: req.body.role,
+            businessname: req.body.businessname,
+            businessaddress: req.body.businessaddress,
+            distributionHub: {
+                name: req.body.distributionHub.name,
+                address: function () {User.findOne({'distributionHub.name': req.body.distributionHub.name})
+                    .then((user) => {return user.distributionHub.address})
+                },
+            },
+
         });
         newUser.save();
         return done(null, newUser);

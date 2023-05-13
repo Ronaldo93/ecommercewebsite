@@ -56,7 +56,8 @@ const userSchema = new mongoose.Schema({
             // return this.role === 'shipper';
             required: function() {
               return this.role === 'shipper';
-            }
+            },
+            unique: true
           },
         address: {
           type: String,
@@ -65,7 +66,8 @@ const userSchema = new mongoose.Schema({
           //   return this.role === 'shipper';
           required: function() {
             return this.role === 'shipper';
-          }
+          },
+          unique: true
         },
       },
       // ==========ROLE==========
