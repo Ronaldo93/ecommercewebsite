@@ -84,12 +84,26 @@ const Product = require('./src/model/product');
 //     console.log('Error retrieving products:', error);
 //   });
 
-
-  // Product.find()
-  // .then((products) => {
-  //     console.log(products);
-  // })
-  // .catch((error) => {console.log(error.message)});
+app.get('/product/:id', (req, res) => {
+  const { id } = req.params;
+  Product.findById(id)
+      .then((matchedProduct) => {
+          if (matchedProduct) {
+              res.render('detail', { product: matchedProduct });
+          } else {
+              res.render('error', { message: 'Product not found' });
+          }
+      })
+      .catch((error) => {
+          console.log('Error retrieving product:', error);
+          res.render('error', { message: 'Error retrieving product' });
+      });
+});
+//   Product.find()
+//   .then((products) => {
+//       console.log(products);
+//   })
+//   .catch((error) => {console.log(error.message)});
  
 
   app.get('/product', (req, res) => {
@@ -113,4 +127,12 @@ app.post('/products', (req, res) => {
   product.save()
     .then(() => res.redirect('/product'))
     .catch(error => res.send(error));
+});
+
+app.get('/viewproduct', (req, res) => {
+  Product.find()
+  .then((products) => {
+      res.render('view_product', {products: products});
+  })
+  .catch((error) => console.log(error.message));
 });

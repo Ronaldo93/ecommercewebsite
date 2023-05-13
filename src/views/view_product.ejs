@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Product</title>
+    <link rel="stylesheet" href="/css/view_product.css">
+    <script src="/js/view_product.js"></script>
+</head>
+<body>
+    <h1>Products</h1>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search by title...">
+        <button onclick="searchProducts()">Search</button>
+    </div>
+    <table>
+      <tr>
+        <th>Thumbnail</th>
+        <th>Price($)</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Vendor</th>
+      </tr>
+      <% products.forEach(function(product) { %>
+        <tr>
+          <td><img src="<%= product.thumbnail %>" alt="productss"></td>
+          <td><%= product.price %></td>
+          <td><%= product.title %></td>
+          <td><%= product.description %></td>
+          <td><%= product.vendor %></td>
+        </tr>
+      <% }); %>
+    </table>
+    <script src="/js/view_product.js"></script>
+</body>
+</html>
