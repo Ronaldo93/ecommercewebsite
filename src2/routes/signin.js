@@ -36,6 +36,17 @@ passport.use('local_signin', new LocalStrategy({
     })
 }));
 
+// serialize and deserialize
+passport.serializeUser((user, done) => {
+    done(null, user._id);
+});
+
+passport.deserializeUser((id, done) => {
+    User.findOne({'_id': id}).then((user) => {
+        done(null, user);
+    })
+});
+
 // @route GET /login
 // @desc render login page
 // @access public
