@@ -64,6 +64,10 @@ body {
     padding: 20px 80px;
     background: #f2420c;
     box-shadow: 0 10px 20px rgba(242, 66, 12);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
 #navbar {

@@ -7,17 +7,6 @@ const session = require('express-session');
 
 // WILL consider after fully developing the features--------------
 // config session for passport
-<<<<<<< HEAD
-// app.use(session({
-//     secret:'what sa fuk',
-//     resave: false,
-//     saveUninitialized: false
-// }))
-
-
-
-// app.use(passport.session()); 
-=======
 app.use(session({
     secret:'what sa fuk',
     resave: false,
@@ -27,7 +16,6 @@ app.use(session({
       expires: new Date(Date.now() + 3600000) // 1 hour
     }
 }));
->>>>>>> c634cb16fc2adbe37432505e1b517bd6c7ec95a6
 // ----------------------------------------------------------------
 
 // body-parser
@@ -47,11 +35,7 @@ const port = 3000;
 // route define
 const signup = require('./src/routes/signup');
 // const home = require('./src/routes/home');
-<<<<<<< HEAD
-
-=======
 const login = require('./src/routes/login');
->>>>>>> c634cb16fc2adbe37432505e1b517bd6c7ec95a6
 
 // route
 app.use('/index', (req, res) => {
@@ -59,10 +43,7 @@ app.use('/index', (req, res) => {
 });
 
 app.use('/signup', signup);
-<<<<<<< HEAD
-=======
 app.use('/login', login);
->>>>>>> c634cb16fc2adbe37432505e1b517bd6c7ec95a6
 // mongoose
 const mongoose = require('mongoose');
 const passport = require('passport');
