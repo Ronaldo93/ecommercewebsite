@@ -6,6 +6,5 @@ const User = require('../model/user');
 
 router.get("/", (req, res) => {
     // find image
-    User.findby({username: req.body.username}), (err, user) => {
-    }
-});
+    User.findby ({username: req.body.username}), (err, user) => {
+}
