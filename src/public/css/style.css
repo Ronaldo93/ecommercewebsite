@@ -105,5 +105,50 @@ body {
 /* home */
 #ad{
   background-image: url(../images/ad.png);
+  height: 90vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
-
+#ad h4{
+  color: #fff;
+  font-size: 48px;
+  line-height: 64px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+#ad h1{
+  color: #fff;
+  font-size: 64px;
+  line-height: 80px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+#ad p{
+  color: #fff;
+  font-size: 24px;
+  line-height: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+#ad button{
+  background-image: linear-gradient(to right, #4c9900, #4c9900);
+  padding: 10px 24px;
+  background: #4c9900;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+#ad button:hover{
+  background: #fff;
+  color: #4c9900;
+}

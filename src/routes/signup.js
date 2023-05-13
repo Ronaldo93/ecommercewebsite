@@ -38,6 +38,18 @@ passport.use('local_signup', new LocalStrategy({
             username: username,
             encrypted_password: bcrypt.hashSync(password, 10),
             profile_picture: req.body.imageBase64,
+            role: req.body.role,
+            businessname: req.body.businessname,
+            businessaddress: req.body.businessaddress,
+            distributionHub: {
+                name: req.body.distributionHubName,
+                address: function () { User.findOne({ 
+                    'distributionHub.name': req.body.distributionHubName 
+                }).then((user) => { 
+                    return user.distributionHub.address; 
+                }) 
+            },
+            },
         });
         newUser.save();
         return done(null, newUser);
@@ -64,7 +76,6 @@ router.post('/new', checkpass, imagehandler, (req, res, next) => {
         {
             session: false,
             failureRedirect: '/signup',
-            successRedirect: '/signup',
         }, function (err, user, info) {
             console.log('auth');
             console.log(err);
@@ -76,7 +87,7 @@ router.post('/new', checkpass, imagehandler, (req, res, next) => {
             if (!user) {
                 return res.redirect('/signup');
             }
-            return res.redirect('/signin');
+            return res.redirect('/login');
     })(req, res, next);
 });
 
