@@ -45,11 +45,11 @@ passport.deserializeUser((req, user, done) => {
     // Look up user id in database. 
     User.findById(user.id).then((user) => {
         console.log('deserialize', user);
-        done(null, {id: user.id, role: user.role, username: user.username});
-        console.log('done');
+        return done(null, {id: user.id, role: user.role, username: user.username});
+        // console.log('done');
     }).catch((err) => {
         console.log('error deserializing user', err);
-        done(null, {id: user.id, role: user.role, username: user.username});
+        return done(null, {id: user.id, role: user.role, username: user.username});
     });
   });
 
@@ -66,7 +66,7 @@ router.post('/auth', (req, res, next) => {
         {
             failureRedirect: '/signin',
             failureFlash: true,
-            successRedirect: '/',
+            successRedirect: '/signin/test',
         })(req, res, next);
 });
 

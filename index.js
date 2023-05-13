@@ -47,15 +47,11 @@ app.use(session({
     secret:'whatdkuk',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 }
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(passport.authenticate('session'));
-
-
-
+// app.use(passport.authenticate('session'));
 
 // uri for mongodb atlas
 const uri = "mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority";
@@ -69,8 +65,6 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
-
-
 
 // Retrieve products from the database
 const Product = require('./src/model/product');
@@ -120,9 +114,6 @@ app.get('/product/:id', (req, res) => {
     })
     .catch((error) => console.log(error.message));
 });
-
-// Use the `express.urlencoded` middleware to parse incoming form data
-app.use(express.urlencoded({ extended: true }));
 
 app.get('/addproduct', (req, res) => {
   res.render('add_product');
