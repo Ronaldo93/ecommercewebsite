@@ -1,13 +1,6 @@
 const express = require('express');
 const app = express();
 // MODULES
-// Session
-const session = require('express-session');
-app.use(session({ 
-    secret:'whatdkuk',
-    resave: false,
-    saveUninitialized: false
-}));
 // router (routing user)
 const router = express.Router();
 
@@ -19,12 +12,6 @@ const bcrypt = require('bcryptjs');
 // MAIN PART
 // 1. import user model
 const User = require('../model/usermodel');
-
-
-app.use(passport.initialize());
-app.use(passport.session());
-// app.use(passport.authenticate('session'));
-
 
 // 2. passport for login
 passport.use('local_signin', new LocalStrategy({
@@ -48,8 +35,6 @@ passport.use('local_signin', new LocalStrategy({
     })
 }));
 
-
-
 passport.serializeUser(function (req, user, done) {
     console.log('serialize', user);
     done(null, {id: user.id, role: user.role, username: user.username});
@@ -68,17 +53,12 @@ passport.deserializeUser((req, user, done) => {
     });
   });
 
-
-
-
 // @route GET /login
 // @desc render login page
 // @access public
 router.get('/', (req, res) => {
     res.render('signin_demo');
 });
-
-
 
 // validate & upload data -> database
 router.post('/auth', (req, res, next) => {

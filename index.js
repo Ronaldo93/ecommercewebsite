@@ -8,14 +8,6 @@ const checkPermission = require('./src/middleware/checkrole');
 // session
 const session = require('express-session');
 
-
-
-
-// WILL consider after fully developing the features--------------
-// config session for passport
-
-// ----------------------------------------------------------------
-
 // body-parser
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -51,9 +43,18 @@ app.use('/test',checkPermission('customer') , test);
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(passport.authenticate('session'));
+app.use(session({ 
+    secret:'whatdkuk',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passport.authenticate('session'));
+
+
 
 
 // uri for mongodb atlas
