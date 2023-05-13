@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 // MODULES
-
+// Session
+const session = require('express-session');
 // router (routing user)
 const router = express.Router();
 
@@ -13,6 +14,28 @@ const bcrypt = require('bcryptjs');
 // MAIN PART
 // 1. import user model
 const User = require('../model/usermodel');
+
+
+
+// using session
+router.use(session({
+    secret:'what sa fuk',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { 
+      maxAge: 3600000, // 1 hour
+      expires: new Date(Date.now() + 3600000) // 1 hour
+    },
+    cookie: {
+      secure: false
+    },
+    
+}));
+
+
+// passport
+router.use(passport.initialize());
+router.use(passport.session());
 
 // 2. passport for login
 passport.use('local_signin', new LocalStrategy({
@@ -43,13 +66,27 @@ router.get('/', (req, res) => {
     res.render('signin_demo');
 });
 
+passport.serializeUser(function (user, done) {
+    console.log('serialize');
+    done(null, {id: user.id, role: user.role, username: user.username});
+});
+
+passport.deserializeUser((user, done) => {
+    // Look up user id in database. 
+    User.findById(user.id, function (err, user) {
+      if (err) return done(err); 
+      done(null, {id: user.id, role: user.role, username: user.username});
+    });
+  });
+
+
 // validate & upload data -> database
 router.post('/auth', (req, res, next) => {
     // convert json
     JSON.stringify(req.body);
-    console.log(req.body);
     passport.authenticate('local_signin',
         {
+            session: true,
             failureRedirect: '/signin',
             failureFlash: true,
         }, function (err, user, info) {
@@ -64,9 +101,19 @@ router.post('/auth', (req, res, next) => {
                 return res.redirect('/signup');
             }
             // set username in cookies
-            req.session.username = user.username;
+            req.session.username = () => {
+                User.findOne({'username': username})
+                    .then((user) => {
+                        return user.username;
+                    });
+                };
             // set role in cookies
-            req.session.role = user.role;
+            req.session.role = () => {
+                User.findOne({'username': username})
+                    .then((user) => {
+                        return user.role;
+                    });
+                };
             return res.redirect('/');
         })(req, res, next);
 });

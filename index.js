@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+// middleware
+const checkPermission = require('./src/middleware/checkrole');
+
 // session
 const session = require('express-session');
 
@@ -14,7 +17,11 @@ app.use(session({
     cookie: { 
       maxAge: 3600000, // 1 hour
       expires: new Date(Date.now() + 3600000) // 1 hour
-    }
+    },
+    cookie: {
+      secure: false
+    },
+    
 }));
 // ----------------------------------------------------------------
 
@@ -36,6 +43,7 @@ const port = 3000;
 const signup = require('./src/routes/signup');
 // const home = require('./src/routes/home');
 const login = require('./src/routes/login');
+const test = require('./src/routes/protected');
 
 // route
 app.use('/index', (req, res) => {
@@ -44,6 +52,7 @@ app.use('/index', (req, res) => {
 
 app.use('/signup', signup);
 app.use('/login', login);
+app.use('/test',checkPermission('customer') , test);
 
 // testing protected route
 
@@ -53,7 +62,10 @@ const passport = require('passport');
 
 // passport
 app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.session());
+
+
+
 
 // uri for mongodb atlas
 const uri = "mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority";

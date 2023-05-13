@@ -2,4 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.use('/', (req, res) => {
-    res.send('Hello world!')
+    console.log("Protected for good!");
+});
+
+module.exports = router;
