@@ -44,11 +44,15 @@ passport.use('local_signup', new LocalStrategy({
             businessaddress: req.body.businessaddress,
             distributionHub: {
                 name: req.body.distributionHubName,
-                address: function () { User.findOne({ 
+                address: () => { User.findOne({ 
                     'distributionHub.name': req.body.distributionHubName 
                 }).then((user) => { 
                     return user.distributionHub.address; 
-                }) 
+                }).catch((err) => {
+                    console.log(err);
+                    return done(err);
+                }
+                )
             },
             },
         });
