@@ -69,20 +69,38 @@ app.listen(port, () => {
 const Product = require('./src/model/product');
 
 // Retrieve products from the database
-Product.find({})
-  .then((products) => {
-    // Loop through products and define routes
-    products.forEach((product) => {
-      const id = product._id; // Get the product ID
+// Product.find({})
+//   .then((products) => {
+//     // Loop through products and define routes
+//     products.forEach((product) => {
+//       const id = product._id; // Get the product ID
 
-      app.get(`/${id}`, (req, res) => {
-        res.render('detail', { product });
+//       app.get(`/product/${id}`, (req, res) => {
+//         res.render('detail', { product });
+//       });
+//     });
+//   })
+//   .catch((error) => {
+//     console.log('Error retrieving products:', error);
+//   });
+
+app.get('/product/:id', (req, res) => {
+  const { id } = req.params;
+  Product.findById(id)
+      .then((matchedProduct) => {
+          if (matchedProduct) {
+              res.render('detail', { product: matchedProduct });
+          } else {
+              res.render('error', { message: 'Product not found' });
+          }
+      })
+      .catch((error) => {
+          console.log('Error retrieving product:', error);
+          res.render('error', { message: 'Error retrieving product' });
       });
-    });
-  })
-  .catch((error) => {
-    console.log('Error retrieving products:', error);
-  });
+});
+
+
   // Product.find()
   // .then((products) => {
   //     console.log(products);
