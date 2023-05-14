@@ -1,0 +1,76 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid black;
+    text-align: center;
+}
+
+th:first-child,
+td:first-child {
+    border-left: 1px solid black;
+}
+
+th:last-child,
+td:last-child {
+    border-right: 1px solid black;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+/* Media queries for different device types */
+
+/* Desktop devices */
+@media screen and (min-width: 1024px) {
+    /* Adjust table cell padding for desktop */
+    th, td {
+        padding: 12px;
+    }
+}
+
+/* Tablet devices */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    /* Reduce table cell padding for tablets */
+    th, td {
+        padding: 6px;
+    }
+}
+
+/* Smartphone devices */
+@media screen and (max-width: 767px) {
+    /* Reduce table cell padding for smartphones */
+    th, td {
+        padding: 4px;
+    }
+
+    /* Center align text in table cells for better readability on small screens */
+    th, td {
+        text-align: center;
+    }
+
+    /* Adjust button padding for smartphones */
+    .btn {
+        padding: 6px 12px;
+    }
+}

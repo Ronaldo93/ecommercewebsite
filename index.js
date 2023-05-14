@@ -120,7 +120,7 @@ app.get('/addproduct', (req, res) => {
 });
 
 app.post('/products', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const product = new Product(req.body);
   product.save()
     .then(() => res.redirect('/product'))
@@ -134,12 +134,84 @@ app.get('/viewproduct', (req, res) => {
   })
   .catch((error) => console.log(error.message));
 });
-
+// Make cart page
 const Cart = require('./src/model/cartmodel');
 app.post('/carts', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const cart = new Cart(req.body);
   cart.save()
-    .then(() => res.redirect('/product'))
+    .then(() => res.redirect('/cart'))
+    .catch(error => res.send(error));
+});
+
+app.get('/cart', (req, res) => {
+  Cart.find()
+  .then((Cart) => {
+      res.render('cart', {Cart: Cart});
+  })
+  .catch((error) => console.log(error.message));
+});
+
+// Delete a item from cart
+app.get('/cart/:id/delete', (req, res) => {
+  Cart.findById(req.params.id)
+    .then(product => {
+      if (!product) {
+        return res.send('Not found any product matching the ID!');
+      }
+      res.render('delete_product_from_cart', { product });
+    })
+    .catch(error => res.send(error));
+});
+
+app.post('/cart/:id/delete', (req, res) => {
+  Cart.findByIdAndDelete(req.params.id)
+    .then(product => {
+      if (!product) {
+        return res.send('Not found any product matching the ID!');
+      }
+      res.redirect('/cart');
+    })
+    .catch(error => res.send(error));
+});
+
+
+// Order a item from cart
+
+app.get('/cart/:id/order', (req, res) => {
+  Cart.findById(req.params.id)
+    .then(product => {
+      if (!product) {
+        return res.send('Not found any product matching the ID!');
+      }
+      res.render('order_product', { product });
+    })
+    .catch(error => res.send(error));
+});
+const order = require('./src/model/order');
+
+app.post('/cart/:id/order', (req, res) => {
+  Cart.findById(req.params.id)
+    .then(product => {
+      if (!product) {
+        return res.send('Not found any product matching the ID!');
+      }
+      const newOrder = new order({
+        productTitle: product.productTitle,
+        productPrice: product.productPrice,
+        productThumbnail: product.productThumbnail,
+        userName: product.userName,
+        productId: product.productId,
+        productDistributionHub: product.productDistributionHub,
+        address: product.address,
+      });
+      newOrder.save()
+        .then(() => {
+          Cart.findByIdAndDelete(req.params.id)
+            .then(() => res.redirect('/cart'))
+            .catch(error => res.send(error));
+        })
+        .catch(error => res.send(error));
+    })
     .catch(error => res.send(error));
 });
