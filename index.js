@@ -1,6 +1,18 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const MongoStore = require('connect-mongo');
+const bcrypt = require('bcryptjs');
+
+const User = require('./src/model/usermodel');
+const initializePassport = require('./passport-config');
+
+// initializePassport(passport, username => {
+//     return User.findOne(user => user.username === username)
+// });
+
+const flash = require('express-flash');
+app.use(flash());
 
 // middleware
 const checkPermission = require('./src/middleware/checkrole');
@@ -20,32 +32,38 @@ const port = 3000;
 // route define
 const signup = require('./src/routes/signup');
 // const home = require('./src/routes/home');
-const login = require('./src/routes/login');
+// const login = require('./src/routes/login');
 const test = require('./src/routes/protected');
 
 // route
 app.use('/index', (req, res) => { res.render('index'); } );
 app.use('/signup', signup);
-app.use('/login', login);
+app.use('/login', (req, res) => { 
+  res.render('signin_demo'); 
+});
 app.use('/test',checkPermission('customer') , test);
 
 // mongoose
 const mongoose = require('mongoose');
 
+const session = require('express-session');
+app.use(session({
+  secret:'myksfey',
+  resave: false,
+  store: MongoStore.create({
+      mongoUrl: 'mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority',
+      onnection: mongoose.connection,
+      ttl: 60 * 60 * 24
+  }),
+  saveUninitialized: true
+}))
+
 const passport = require('passport');
 app.use(passport.initialize());
 // passport & session (Authentication)
 // session
-const session = require('express-session');
-app.use(session({ 
-    secret:'mykey',
-    resave: false,
-    saveUninitialized: false,
-}));
-
-
 // app.use(passport.session());
-app.use(passport.authenticate('session'));
+// app.use(passport.authenticate('session'));
 
 
 
@@ -143,3 +161,12 @@ app.post('/carts', (req, res) => {
     .then(() => res.redirect('/product'))
     .catch(error => res.send(error));
 });
+
+
+
+// Exp
+
+app.use('/testaq', (req, res) => {
+  res.render('signin_demo');
+});
+// -------------------------------------------------------

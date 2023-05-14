@@ -6,8 +6,9 @@ const router = express.Router();
 const sessionMiddleware = require('../middleware/cookies');
 
 // signup procedure - auth module, hash module
-app.use(sessionMiddleware());
 const passport = require('passport');
+app.use(sessionMiddleware());
+
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 
@@ -23,7 +24,6 @@ const User = require('../model/usermodel');
 passport.use('local_signin', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
-    // passReqToCallback: true,
 }, (username, password, done) => {
     // define field for register
     // check if user exists
@@ -43,21 +43,23 @@ passport.use('local_signin', new LocalStrategy({
 
 passport.serializeUser(function (user, done) {
     console.log('serialize', user);
-    done(null, {id: user.id, role: user.role, username: user.username});
+    done(null, user._id);
 });
 
 passport.deserializeUser((user, done) => {
     console.log('deserialize')
     // Look up user id in database. 
-    User.findById(user.id).then((user) => {
+    User.findById(user._id).then((user) => {
         console.log('deserialize', user);
-        return done(null, {id: user.id, role: user.role, username: user.username});
+        return done(null, user._id);
         // console.log('done');
     }).catch((err) => {
-        console.log('error deserializing user', err);
-        return done(null, {id: user.id, role: user.role, username: user.username});
+        console.log(err);
+        return done(err);
     });
   });
+
+
 
 // @route GET /login
 // @desc render login page
@@ -65,6 +67,8 @@ passport.deserializeUser((user, done) => {
 router.get('/', (req, res) => {
     res.render('signin_demo');
 });
+
+
 
 // validate & upload data -> database
 router.post('/auth',
@@ -74,17 +78,8 @@ router.post('/auth',
             failureRedirect: '/signin',
             failureFlash: true,
             successRedirect: '/signin/test',
-        }),
-    (req, res, next) => {
-        req.login(user, (err) => {
-            if (err) {
-                console.log(err);
-                return next(err);
-            }
-            console.log('login success');
-            return res.redirect('/signin/test');
         })
-});
+);
 
 router.get('/test', (req, res) => {
     console.log(req.user);
