@@ -1,13 +1,17 @@
 const express = require('express');
 const app = express();
 // MODULES
-// Session
-const session = require('express-session');
 // router (routing user)
 const router = express.Router();
+const sessionMiddleware = require('../middleware/cookies');
 
 // signup procedure - auth module, hash module
+app.use(sessionMiddleware());
 const passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.authenticate('session'));
+
+
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
@@ -15,34 +19,12 @@ const bcrypt = require('bcryptjs');
 // 1. import user model
 const User = require('../model/usermodel');
 
-
-
-// using session
-router.use(session({
-    secret:'what sa fuk',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { 
-      maxAge: 3600000, // 1 hour
-      expires: new Date(Date.now() + 3600000) // 1 hour
-    },
-    cookie: {
-      secure: false
-    },
-    
-}));
-
-
-// passport
-router.use(passport.initialize());
-router.use(passport.session());
-
 // 2. passport for login
 passport.use('local_signin', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
-    passReqToCallback: true,
-}, (req, username, password, done) => {
+    // passReqToCallback: true,
+}, (username, password, done) => {
     // define field for register
     // check if user exists
     User.findOne({ 'username': username }).then((user) => {
@@ -59,6 +41,24 @@ passport.use('local_signin', new LocalStrategy({
     })
 }));
 
+passport.serializeUser(function (user, done) {
+    console.log('serialize', user);
+    done(null, {id: user.id, role: user.role, username: user.username});
+});
+
+passport.deserializeUser((user, done) => {
+    console.log('deserialize')
+    // Look up user id in database. 
+    User.findById(user.id).then((user) => {
+        console.log('deserialize', user);
+        return done(null, {id: user.id, role: user.role, username: user.username});
+        // console.log('done');
+    }).catch((err) => {
+        console.log('error deserializing user', err);
+        return done(null, {id: user.id, role: user.role, username: user.username});
+    });
+  });
+
 // @route GET /login
 // @desc render login page
 // @access public
@@ -66,57 +66,30 @@ router.get('/', (req, res) => {
     res.render('signin_demo');
 });
 
-passport.serializeUser(function (user, done) {
-    console.log('serialize');
-    done(null, {id: user.id, role: user.role, username: user.username});
-});
-
-passport.deserializeUser((user, done) => {
-    // Look up user id in database. 
-    User.findById(user.id, function (err, user) {
-      if (err) return done(err); 
-      done(null, {id: user.id, role: user.role, username: user.username});
-    });
-  });
-
-
 // validate & upload data -> database
-router.post('/auth', (req, res, next) => {
-    // convert json
-    JSON.stringify(req.body);
+router.post('/auth',
     passport.authenticate('local_signin',
         {
             session: true,
             failureRedirect: '/signin',
             failureFlash: true,
-        }, function (err, user, info) {
-            console.log('auth');
-            console.log(err);
-            console.log(user);
-            console.log(info);
+            successRedirect: '/signin/test',
+        }),
+    (req, res, next) => {
+        req.login(user, (err) => {
             if (err) {
+                console.log(err);
                 return next(err);
             }
-            if (!user) {
-                return res.redirect('/signup');
-            }
-            // set username in cookies
-            req.session.username = () => {
-                User.findOne({'username': username})
-                    .then((user) => {
-                        return user.username;
-                    });
-                };
-            // set role in cookies
-            req.session.role = () => {
-                User.findOne({'username': username})
-                    .then((user) => {
-                        return user.role;
-                    });
-                };
-            return res.redirect('/');
-        })(req, res, next);
+            console.log('login success');
+            return res.redirect('/signin/test');
+        })
 });
+
+router.get('/test', (req, res) => {
+    console.log(req.user);
+    res.send(req.user);
+    });
 
 
 module.exports = router;
