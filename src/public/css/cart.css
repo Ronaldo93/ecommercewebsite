@@ -39,7 +39,6 @@ th {
     background-color: #45a049;
 }
 
-/* Media queries for different device types */
 
 /* Desktop devices */
 @media screen and (min-width: 1024px) {
@@ -50,26 +49,21 @@ th {
 }
 
 /* Tablet devices */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    /* Reduce table cell padding for tablets */
+@media screen  and (max-width: 1023px) {
     th, td {
         padding: 6px;
     }
 }
 
 /* Smartphone devices */
-@media screen and (max-width: 767px) {
-    /* Reduce table cell padding for smartphones */
+@media screen and (max-width: 768px) {
     th, td {
         padding: 4px;
     }
 
-    /* Center align text in table cells for better readability on small screens */
     th, td {
         text-align: center;
     }
-
-    /* Adjust button padding for smartphones */
     .btn {
         padding: 6px 12px;
     }

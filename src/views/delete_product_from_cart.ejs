@@ -5,12 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Delete Product</title>
+  <link rel="stylesheet" href="/css/order_delete.css">
 </head>
 <body>
   <h1>Delete Product</h1>
   <form action="/cart/<%= product._id %>/delete" method="POST">
     <p>Are you sure you want to delete the product "<%= product.productTitle %>"?</p>
-    <input type="submit" value="Delete">
+    <div id="button"><input type="submit" value="Delete" class="btn">
+      <a class="btn" href="/cart">Return</a></div>
   </form>
 </body>
 </html>
