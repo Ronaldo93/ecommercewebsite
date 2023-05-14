@@ -3,16 +3,37 @@ const app = express();
 const path = require('path');
 const MongoStore = require('connect-mongo');
 const bcrypt = require('bcryptjs');
+const flash = require('express-flash');
 
+// session & server-side passport
+const session = require('express-session');
 const User = require('./src/model/usermodel');
 const initializePassport = require('./passport-config');
 
-// initializePassport(passport, username => {
-//     return User.findOne(user => user.username === username)
-// });
+// AUTHENTICATION
+const passport = require('passport');
+initializePassport(
+  passport, 
+  username => {
+    return User.findOne(user => user.username === username)
+  },
+  id => {
+    return User.findOne(user => user.id === id)
+  }
+);
 
-const flash = require('express-flash');
+// flash
 app.use(flash());
+// session
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // middleware
 const checkPermission = require('./src/middleware/checkrole');
@@ -41,29 +62,17 @@ app.use('/signup', signup);
 app.use('/login', (req, res) => { 
   res.render('signin_demo'); 
 });
+// signin mechanism
+app.post('/login/auth', passport.authenticate('local', {
+  successRedirect: '/test',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
+
 app.use('/test',checkPermission('customer') , test);
 
 // mongoose
 const mongoose = require('mongoose');
-
-const session = require('express-session');
-app.use(session({
-  secret:'myksfey',
-  resave: false,
-  store: MongoStore.create({
-      mongoUrl: 'mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority',
-      onnection: mongoose.connection,
-      ttl: 60 * 60 * 24
-  }),
-  saveUninitialized: true
-}))
-
-const passport = require('passport');
-app.use(passport.initialize());
-// passport & session (Authentication)
-// session
-// app.use(passport.session());
-// app.use(passport.authenticate('session'));
 
 
 
@@ -163,10 +172,3 @@ app.post('/carts', (req, res) => {
 });
 
 
-
-// Exp
-
-app.use('/testaq', (req, res) => {
-  res.render('signin_demo');
-});
-// -------------------------------------------------------
