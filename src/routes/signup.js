@@ -21,6 +21,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../model/usermodel');
 
 
+
 // 2. passport for registeration
 passport.use('local_signup', new LocalStrategy({
         usernameField: 'username',
@@ -44,16 +45,7 @@ passport.use('local_signup', new LocalStrategy({
             businessaddress: req.body.businessaddress,
             distributionHub: {
                 name: req.body.distributionHubName,
-                address: () => { User.findOne({ 
-                    'distributionHub.name': req.body.distributionHubName 
-                }).then((user) => { 
-                    return user.distributionHub.address; 
-                }).catch((err) => {
-                    console.log(err);
-                    return done(err);
-                }
-                )
-            },
+                address: req.body.distributionHubAddress,
             },
         });
         newUser.save();
