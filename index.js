@@ -135,7 +135,6 @@ app.get('/viewproduct', (req, res) => {
   .catch((error) => console.log(error.message));
 });
 
-<<<<<<< HEAD
 const Cart = require('./src/model/cartmodel');
 app.post('/carts', (req, res) => {
   console.log(req.body);
@@ -144,5 +143,3 @@ app.post('/carts', (req, res) => {
     .then(() => res.redirect('/product'))
     .catch(error => res.send(error));
 });
-=======
->>>>>>> 419b1a15e9fd4a856be5574d679252bc09d7a3f6
