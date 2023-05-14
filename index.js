@@ -32,17 +32,19 @@ app.use('/test',checkPermission('customer') , test);
 // mongoose
 const mongoose = require('mongoose');
 
+const passport = require('passport');
+app.use(passport.initialize());
 // passport & session (Authentication)
 // session
 const session = require('express-session');
 app.use(session({ 
-    secret:'wshatdkukllplp',
+    secret:'mykey',
     resave: false,
     saveUninitialized: false,
 }));
 
-const passport = require('passport');
-app.use(passport.session());
+
+// app.use(passport.session());
 app.use(passport.authenticate('session'));
 
 
@@ -132,3 +134,4 @@ app.get('/viewproduct', (req, res) => {
   })
   .catch((error) => console.log(error.message));
 });
+

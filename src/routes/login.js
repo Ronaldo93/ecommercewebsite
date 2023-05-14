@@ -3,9 +3,15 @@ const app = express();
 // MODULES
 // router (routing user)
 const router = express.Router();
+const sessionMiddleware = require('../middleware/cookies');
 
 // signup procedure - auth module, hash module
+app.use(sessionMiddleware());
 const passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.authenticate('session'));
+
+
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
@@ -17,8 +23,8 @@ const User = require('../model/usermodel');
 passport.use('local_signin', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
-    passReqToCallback: true,
-}, (req, username, password, done) => {
+    // passReqToCallback: true,
+}, (username, password, done) => {
     // define field for register
     // check if user exists
     User.findOne({ 'username': username }).then((user) => {
@@ -61,14 +67,23 @@ router.get('/', (req, res) => {
 });
 
 // validate & upload data -> database
-router.post('/auth', (req, res, next) => {
+router.post('/auth',
     passport.authenticate('local_signin',
         {
             session: true,
             failureRedirect: '/signin',
             failureFlash: true,
             successRedirect: '/signin/test',
-        })(req, res, next);
+        }),
+    (req, res, next) => {
+        req.login(user, (err) => {
+            if (err) {
+                console.log(err);
+                return next(err);
+            }
+            console.log('login success');
+            return res.redirect('/signin/test');
+        })
 });
 
 router.get('/test', (req, res) => {
