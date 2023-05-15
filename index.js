@@ -103,6 +103,7 @@ app.get("/failed", (req, res, next) => {
   console.log(req.session);
   res.send("failed login!");
 });
+
 app.get("/success", checkAuth, (req, res, next) => {
   console.log('debug info:');
   console.log("req.user: ", req.user);

@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 h1 {
@@ -44,45 +44,45 @@ p {
 }
 
 .section-p1 {
-    padding: 40px 80px;
+  padding: 40px 80px;
 }
 
 .section-m1 {
-    margin: 40px 0;
+  margin: 40px 0;
 }
 
 body {
-    width: 100%;
+  width: 100%;
 }
 
 /* header */
 
 #header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 80px;
-    background: #f2420c;
-    box-shadow: 0 10px 20px rgba(242, 66, 12);
-    z-index: 999;
-    position: sticky;
-    top: 0;
-    left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 80px;
+  background: #f2420c;
+  box-shadow: 0 10px 20px rgba(242, 66, 12);
+  z-index: 999;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 
 #navbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#navbar li{
+#navbar li {
   list-style: none;
   padding: 0 24px;
-  position: relative
+  position: relative;
 }
 
-#navbar li a{
+#navbar li a {
   text-decoration: none;
   color: #ff0000;
   font-size: 18px;
@@ -91,13 +91,12 @@ body {
 }
 
 #navbar li a:hover,
-#navbar li a.active{
+#navbar li a.active {
   color: #4c9900;
 }
 
-#navbar li a.active::after
-#navbar li a.hover::after{
-  content: '';
+#navbar li a.active::after #navbar li a.hover::after {
+  content: "";
   width: 590%;
   height: 2px;
   background: #4c9900;
@@ -107,7 +106,7 @@ body {
 }
 
 /* home */
-#ad{
+#ad {
   background-image: url(../images/ad.png);
   height: 90vh;
   width: 100%;
@@ -119,28 +118,28 @@ body {
   align-items: flex-start;
   justify-content: center;
 }
-#ad h4{
+#ad h4 {
   color: #fff;
   font-size: 48px;
   line-height: 64px;
   margin-bottom: 20px;
   padding-bottom: 20px;
 }
-#ad h1{
+#ad h1 {
   color: #fff;
   font-size: 64px;
   line-height: 80px;
   margin-bottom: 20px;
   padding-bottom: 20px;
 }
-#ad p{
+#ad p {
   color: #fff;
   font-size: 24px;
   line-height: 40px;
   margin-bottom: 20px;
   padding-bottom: 20px;
 }
-#ad button{
+#ad button {
   background-image: linear-gradient(to right, #4c9900, #4c9900);
   padding: 10px 24px;
   background: #4c9900;
@@ -152,7 +151,7 @@ body {
   cursor: pointer;
   transition: 0.5s ease;
 }
-#ad button:hover{
+#ad button:hover {
   background: #fff;
   color: #4c9900;
 }

@@ -12,14 +12,14 @@ main {
 /* Style for the container */
 #contain {
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
   margin: 50px;
 }
 
 /* Style for the product image */
 #contain img {
-  width:  80%;
+  width: 80%;
   height: 500px;
   border-radius: 5px;
 }
@@ -121,7 +121,7 @@ div#img {
     width: 100%;
   }
 
-  div#img{
+  div#img {
     width: 80%;
   }
   #contain img {

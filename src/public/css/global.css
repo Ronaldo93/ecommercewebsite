@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 /* 
@@ -15,412 +15,405 @@
     list-style: none;
     box-sizing: border-box;
   } */
-  
-  body {
-    width: 100%;
-    height: fit-content;
-    background-color: #e2e1e0;
-  }
-  main {
-    margin: 75px 0px;
-  }
 
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap');
-
-:root{
-  
-    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
-    --border: .1rem solid rgba(0,0,0,.1);
-    --border-hover: .1rem solid #000000;
+body {
+  width: 100%;
+  height: fit-content;
+  background-color: #e2e1e0;
+}
+main {
+  margin: 75px 0px;
 }
 
-*{
-    font-family: 'Nunito', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    outline: none;
-    border: none;
-    text-transform: capitalize;
-    transition: all .2s linear;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap");
+
+:root {
+  --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  --border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  --border-hover: 0.1rem solid #000000;
 }
 
-html{
-    font-size: 62.5%;
-    overflow-x: hidden;
-    scroll-padding-top: 5.5rem;
-    scroll-behavior: smooth;
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  transition: all 0.2s linear;
 }
 
-html::-webkit-scrollbar{
-    width: .5rem;
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 5.5rem;
+  scroll-behavior: smooth;
 }
 
-html::-webkit-scrollbar-track{
-    background: transparent;
+html::-webkit-scrollbar {
+  width: 0.5rem;
 }
 
-html::-webkit-scrollbar-thumb{
-    background: #000000;
+html::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-
-.heading{
-    text-align: center;
-    margin-bottom: 2rem;
-    position: relative;
+html::-webkit-scrollbar-thumb {
+  background: #000000;
 }
 
-.heading::before{
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 100%;
-    height: .01rem;
-    background: rgba(0,0,0,.1);
-    z-index: -1;
+.heading {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
 }
 
-.heading span{
-    font-size: 3rem;
-    padding: .5rem 2 rem;
-    color: #000000;
-    background: #fff;
-    border: var(--border);
+.heading::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 0.01rem;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: -1;
 }
 
-
-section{
-    padding: 5rem 9%;
+.heading span {
+  font-size: 3rem;
+  padding: 0.5rem 2 rem;
+  color: #000000;
+  background: #fff;
+  border: var(--border);
 }
 
-.btn{
-    margin-top: 1rem;
-    display: inline-block;
-    padding: .9rem 3rem;
-    border-radius: .5rem;
-    color: #fff;
-    background: rgb(40, 177, 40);
-    font-size: 1.7rem;
-    cursor: pointer;
-    font-weight: 500;
+section {
+  padding: 5rem 9%;
 }
 
-.btn:hover{
-    background:darkgreen ;
-}
-header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background:#000000;
-    padding: 1rem 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-    box-shadow: var(--box-shadow);
+.btn {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.9rem 3rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  background: rgb(40, 177, 40);
+  font-size: 1.7rem;
+  cursor: pointer;
+  font-weight: 500;
 }
 
-
+.btn:hover {
+  background: darkgreen;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #000000;
+  padding: 1rem 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  box-shadow: var(--box-shadow);
+}
 
 header .logo {
-    font-size: 1.5rem;
-    font-weight: bolder;
-    color:palegreen;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: palegreen;
 }
 
-header .logoimg{
-    width: 50px;
-    cursor: pointer;;
+header .logoimg {
+  width: 50px;
+  cursor: pointer;
 }
 
-header .navbar a{
-    font-size: 1.71..0rem;
-    border-radius: .5rem;
-    padding: .5rem 1.5rem;
-    color:#fff;
+header .navbar a {
+  font-size: 1.71..0rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  color: #fff;
 }
 
 header .navbar a.active,
-header .navbar a:hover{
-    color:#fff;
-    background: #E50914;
+header .navbar a:hover {
+  color: #fff;
+  background: #e50914;
 }
 
 header .icons i,
-header .icons a{
-    cursor: pointer;
-    margin-left: .5rem;
-    height: 3rem;
-    line-height: 3rem;
-    width: 3rem;
-    text-align: center;
-    font-size: 1.7rem;
-    color: #fff;
-    border-radius: 50%;
-    background: #E50914;
+header .icons a {
+  cursor: pointer;
+  margin-left: 0.5rem;
+  height: 3rem;
+  line-height: 3rem;
+  width: 3rem;
+  text-align: center;
+  font-size: 1.7rem;
+  color: #fff;
+  border-radius: 50%;
+  background: #e50914;
 }
 
 header .icons i:hover,
-header .icons a:hover{
-    color: #E50914;
-    background: #fff;
-    transform: rotate(360eg);
+header .icons a:hover {
+  color: #e50914;
+  background: #fff;
+  transform: rotate(360eg);
 }
 
-header .icons #menu-bars{
-    display: none;
+header .icons #menu-bars {
+  display: none;
 }
 
-.login-form-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 9);
-    position: fixed;
-    top: 0;
-    right: -105%;
-    z-index: 10000;
-    height: 100%;
-    width: 100%;
+.login-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 9);
+  position: fixed;
+  top: 0;
+  right: -105%;
+  z-index: 10000;
+  height: 100%;
+  width: 100%;
 }
 
-.login-form-container.active{
-    left: 0;
+.login-form-container.active {
+  left: 0;
 }
 
-.login-form-container form{
-    background: #fff;
-    border: var(--border);
-    width: 40rem;
-    padding: 2rem;
-    box-shadow: var(--box-shadow);
-    border-radius: .5rem;
-    margin: 2rem;
+.login-form-container form {
+  background: #fff;
+  border: var(--border);
+  width: 40rem;
+  padding: 2rem;
+  box-shadow: var(--box-shadow);
+  border-radius: 0.5rem;
+  margin: 2rem;
 }
 
-.login-form-container form h3{
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    color: #000000;
-    text-align: center;
+.login-form-container form h3 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  color: #000000;
+  text-align: center;
 }
 
-.login-form-container form span{
-    display: block;
-    font-size: 1.5rem;
-    padding-top: 1rem;
+.login-form-container form span {
+  display: block;
+  font-size: 1.5rem;
+  padding-top: 1rem;
 }
 
-.login-form-container form .box{
-    width: 100%;
-    margin: .7rem 0;
-    font-size: 1.6rem;
-    border: var(--border);
-    border-radius: .5rem;
-    padding: 1rem 1.2rem;
-    color: #000000;
-    text-transform: none;
+.login-form-container form .box {
+  width: 100%;
+  margin: 0.7rem 0;
+  font-size: 1.6rem;
+  border: var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem 1.2rem;
+  color: #000000;
+  text-transform: none;
 }
 
-.login-form-container form .checkbox{
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    padding: 1rem 0;
+.login-form-container form .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
 }
 
-.login-form-container form .checkbox label{
-    font-size: 1.5rem;
-    color: #181818;
-    cursor: pointer;
+.login-form-container form .checkbox label {
+  font-size: 1.5rem;
+  color: #181818;
+  cursor: pointer;
 }
 
-.login-form-container form .btn{
-    text-align: center;
-    width: 100%;
-    margin: 1.5rem 0;
+.login-form-container form .btn {
+  text-align: center;
+  width: 100%;
+  margin: 1.5rem 0;
 }
 
-.login-form-container form p{
-    padding-top: .8rem;
-    color: #181818;
-    font-size: 1.5rem;
+.login-form-container form p {
+  padding-top: 0.8rem;
+  color: #181818;
+  font-size: 1.5rem;
 }
 
-.login-form-container form p a{
-    color: rgb(134, 214, 14);
-    text-decoration: underline;
+.login-form-container form p a {
+  color: rgb(134, 214, 14);
+  text-decoration: underline;
 }
 
-.login-form-container #close-login-btn{
-    position: absolute;
-    top: 10rem;
-    right: 20rem;
-    font-size: 5rem;
-    color: #000000;
-    cursor: pointer;
+.login-form-container #close-login-btn {
+  position: absolute;
+  top: 10rem;
+  right: 20rem;
+  font-size: 5rem;
+  color: #000000;
+  cursor: pointer;
 }
-.fotter{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background:#000000;
-    padding: 1rem 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-    box-shadow: var(--box-shadow);
+.fotter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000000;
+  padding: 1rem 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  box-shadow: var(--box-shadow);
 }
 
-.fotter .navbar a{
-    font-size:1rem;
-    border-radius: .5rem;
-    padding: .5rem 1.5rem;
-    color:#fff;
+.fotter .navbar a {
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  color: #fff;
 }
 .fotter .navbar .active,
-.fotter .navbar a:hover{
-    color:#fff;
-    background: #E50914;
+.fotter .navbar a:hover {
+  color: #fff;
+  background: #e50914;
 }
 
-.contact-form-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 20px;
-    right: 0;
-    z-index: 10000;
-    height: 100%;
-    width: 100%;
+.contact-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 20px;
+  right: 0;
+  z-index: 10000;
+  height: 100%;
+  width: 100%;
 }
 
-.contact-form-container form{
-    background: #fff;
-    border: var(--border);
-    width: 40rem;
-    padding: 2rem;
-    box-shadow: var(--box-shadow);
-    border-radius: .5rem;
-    margin: 2rem;
+.contact-form-container form {
+  background: #fff;
+  border: var(--border);
+  width: 40rem;
+  padding: 2rem;
+  box-shadow: var(--box-shadow);
+  border-radius: 0.5rem;
+  margin: 2rem;
 }
 
-.contact-form-container form h3{
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    color: #000000;
-    text-align: center;
+.contact-form-container form h3 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  color: #000000;
+  text-align: center;
 }
 
-.contact-form-container form span{
-    display: block;
-    font-size: 1.5rem;
-    padding-top: 1rem;
+.contact-form-container form span {
+  display: block;
+  font-size: 1.5rem;
+  padding-top: 1rem;
 }
 
-.contact-form-container form .box{
-    width: 100%;
-    margin: .7rem 0;
-    font-size: 1.6rem;
-    border: var(--border);
-    border-radius: .5rem;
-    padding: 1rem 1.2rem;
-    color: #000000;
-    text-transform: none;
+.contact-form-container form .box {
+  width: 100%;
+  margin: 0.7rem 0;
+  font-size: 1.6rem;
+  border: var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem 1.2rem;
+  color: #000000;
+  text-transform: none;
 }
 
-.contact-form-container form .checkbox{
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    padding: 1rem 0;
+.contact-form-container form .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
 }
 
-.contact-form-container form .checkbox label{
-    font-size: 1.5rem;
-    color: #181818;
-    cursor: pointer;
+.contact-form-container form .checkbox label {
+  font-size: 1.5rem;
+  color: #181818;
+  cursor: pointer;
 }
 
-.contact-form-container form .checkbox h5{
-    font-size: 1.5rem;
-    color: #181818;
-    cursor: pointer;
+.contact-form-container form .checkbox h5 {
+  font-size: 1.5rem;
+  color: #181818;
+  cursor: pointer;
 }
 
-.contact-form-container form .btn{
-    text-align: center;
-    width: 100%;
-    margin: 1.5rem 0;
+.contact-form-container form .btn {
+  text-align: center;
+  width: 100%;
+  margin: 1.5rem 0;
 }
 
-.contact-form-container form p{
-    padding-top: .8rem;
-    color: #181818;
-    font-size: 1.5rem;
+.contact-form-container form p {
+  padding-top: 0.8rem;
+  color: #181818;
+  font-size: 1.5rem;
 }
 
-.contact-form-container form p a{
-    color: rgb(134, 214, 14);
-    text-decoration: underline;
+.contact-form-container form p a {
+  color: rgb(134, 214, 14);
+  text-decoration: underline;
 }
-
 
 /*media query*/
-@media(max-width: 990px){
-    html{
-        font-size: 55%;
-    }
-    header{
-        padding: 1rem 2rem;
-    }
-    section{
-        padding: 3rem 2rem;
-    }
+@media (max-width: 990px) {
+  html {
+    font-size: 55%;
+  }
+  header {
+    padding: 1rem 2rem;
+  }
+  section {
+    padding: 3rem 2rem;
+  }
 }
 
-@media(max-width:768px){
-    header .icons #menu-bars{
-        display: inline-block;
-    }
-    header .navbar{
-        position: absolute;
-        top:100%;
-        left: 0;
-        right: 0;
-        background: #000000;
-        border-top: .1rem solid rgba(0,0,0,.2);
-        border-bottom: .1rem solid rgba(0,0,0,.2);
-        padding: 1rem;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    }
-    header .navbar.active{
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-    header .navbar a{
-        display: block;
-        padding: 1.5rem;
-        margin: 1rem;
-        font-size: 2rem;
-        background: #E50914;
-    }
-
+@media (max-width: 768px) {
+  header .icons #menu-bars {
+    display: inline-block;
+  }
+  header .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #000000;
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+  header .navbar.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  header .navbar a {
+    display: block;
+    padding: 1.5rem;
+    margin: 1rem;
+    font-size: 2rem;
+    background: #e50914;
+  }
 }
 
-@media(max-width:468px){
-    html{
-        font-size: 50%;
-    }
-    header{
-        padding: 1rem 2rem;
-    }
+@media (max-width: 468px) {
+  html {
+    font-size: 50%;
+  }
+  header {
+    padding: 1rem 2rem;
+  }
 }
