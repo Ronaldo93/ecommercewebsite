@@ -1,14 +1,136 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const MongoStore = require('connect-mongo');
+const bcrypt = require('bcryptjs');
+
+// body-parser (should be used before any route, even some middleware)
+// because it parses the body and adds it to the request object
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+
+// WIP - SESSION
+// COOKIES
+// 1. Requirements
+// express-session, uuid, session-file-store, express-flash (for flash messages)
+const { v4: uuidv4 } = require('uuid');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+const flash = require('express-flash');
+
+// Middleware
+// authentication middleware: passport
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
+// other middleware
+const checkAuth = require('./src/middleware/checkAuth');
+
+// 2. User Model
+const User = require('./src/model/usermodel');
+
+app.use(session({
+  // unique id per request
+  genid: (req) => {
+    console.log('Inside the session middleware, ID is: ', req.sessionID);
+    return uuidv4();
+  },
+  // For now we'll just store locally (in sessions folder)
+  store: new FileStore(),
+  // some option related to session
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// serialize -> deserialize
+// serialize: save user info to session (user object)
+passport.serializeUser((user, done) => {
+    console.log("Inside serializeUser callback. User id is save to the session file store here");
+    done(null, user);
+});
+
+// deserialize: get user info from session
+passport.deserializeUser((user, done) => {
+    console.log("Inside deserializeUser callback");
+    console.log(`The user id passport saved in the session file store is: ${user}`);
+    done(null, user);
+});
+
+// Strategy for authentication
+// Login
+passport.use('login', new localStrategy(
+    {
+        usernameField: 'username',
+        passwordField: 'password',
+        passReqToCallback: true 
+    }, (req, username, password, done) => {
+        User.findOne({ 'username': username }).then((user) => {
+            if (user) {
+                // compare password
+                if (!bcrypt.compareSync(password, user.encrypted_password)) {
+                    return done(null, false, {message: 'Incorrect password.'});
+                }
+                return done(null, user);
+            }
+        }).catch((err) => {
+            console.log(err);
+            res.send(500).message('An error occured on our server! Hang tight...');
+            return done(err);
+        })
+    })
+);
+
+// route after defining passport strategy
+app.get("/", (req, res) => {
+    console.log('debug info:');
+    console.log("req.user: ", req.user);
+    console.log("req.login: ", req.login);
+    console.log("req.logout:", req.logout);
+    console.log("req.isAuthenticated: ", req.isAuthenticated());
+    res.send("Nothing to see here. go to /login");
+});
+
+app.get("/failed", (req, res, next) => {
+    console.log(req.session);
+    res.send("failed login!");
+});
+app.get("/success", checkAuth, (req, res, next) => {
+    // console.log("req.user: ", req.user);
+    // console.log("req.login: ", req.login);
+    // console.log("req.logout:", req.logout);
+    // console.log("req.isAuthenticated: ", req.isAuthenticated());
+    console.log('req.query: ', req.query);
+    res.send("login success!");
+});
+
+// ui for login
+app.get("/login1", (req, res, next) => {
+    res.render("login1")
+});
+
+  app.post(
+    "/login",
+    function (req, res, next) {
+      console.log(req.body);
+      next();
+    },
+    passport.authenticate("login", {
+      failureRedirect: "/failed",
+      successRedirect: `/success?message=success!%20You%20logged%20in!`,
+      failureMessage: true,
+      successMessage: true,
+    })
+  );
+
+// END OF TEST =========================
 
 // middleware
 const checkPermission = require('./src/middleware/checkrole');
 
-// body-parser
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 // Using public 
 app.use(express.static(path.join(__dirname, 'src', 'public')));
@@ -20,32 +142,18 @@ const port = 3000;
 // route define
 const signup = require('./src/routes/signup');
 // const home = require('./src/routes/home');
-const login = require('./src/routes/login');
+// const login = require('./src/routes/login');
 const test = require('./src/routes/protected');
 
 // route
 app.use('/index', (req, res) => { res.render('index'); } );
 app.use('/signup', signup);
-app.use('/login', login);
+
+// test
 app.use('/test',checkPermission('customer') , test);
 
 // mongoose
 const mongoose = require('mongoose');
-
-const passport = require('passport');
-app.use(passport.initialize());
-// passport & session (Authentication)
-// session
-const session = require('express-session');
-app.use(session({ 
-    secret:'mykey',
-    resave: false,
-    saveUninitialized: false,
-}));
-
-
-// app.use(passport.session());
-app.use(passport.authenticate('session'));
 
 
 
