@@ -152,12 +152,14 @@ const signup = require('./src/routes/signup');
 const product = require('./src/routes/product');
 const cart = require('./src/routes/cart');
 const vendor = require('./src/routes/vendor');
+const user = require('./src/routes/user');
 
 // route
 app.use('/signup', signup);
 app.use('/product', product);
 app.use('/cart', cart);
 app.use('/vendor', vendor);
+app.use('/user', user);
 
 // mongoose
 const mongoose = require('mongoose');
