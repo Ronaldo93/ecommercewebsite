@@ -81,10 +81,7 @@ router.post('/new', checkpass, imagehandler, (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            if (!user) {
-                return res.redirect('/signup');
-            }
-            return res.redirect('/login');
+            return res.redirect('/');
     })(req, res, next);
 });
 

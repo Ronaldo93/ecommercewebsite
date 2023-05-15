@@ -26,6 +26,10 @@ const localStrategy = require('passport-local').Strategy;
 // other middleware
 const checkAuth = require('./src/middleware/checkAuth');
 
+// The whole server uses flash
+app.use(flash());
+
+
 // 2. User Model
 const User = require('./src/model/usermodel');
 
@@ -78,7 +82,6 @@ passport.use('login', new localStrategy(
             }
         }).catch((err) => {
             console.log(err);
-            res.send(500).message('An error occured on our server! Hang tight...');
             return done(err);
         })
     })
@@ -91,7 +94,7 @@ app.get("/", (req, res) => {
     console.log("req.login: ", req.login);
     console.log("req.logout:", req.logout);
     console.log("req.isAuthenticated: ", req.isAuthenticated());
-    res.send("Nothing to see here. go to /login");
+    res.render("index");
 });
 
 app.get("/failed", (req, res, next) => {
@@ -104,13 +107,14 @@ app.get("/success", checkAuth, (req, res, next) => {
     // console.log("req.logout:", req.logout);
     // console.log("req.isAuthenticated: ", req.isAuthenticated());
     console.log('req.query: ', req.query);
-    res.send("login success!");
-});
+    req.flash("login success! Welcome " + req.user.username + "!"); // req.user is the user object
+    res.redirect("/product");
+  });
 
-// ui for login
-app.get("/login1", (req, res, next) => {
-    res.render("login1")
-});
+// ui for login (disabled cuz no need)
+// app.get("/login1", (req, res, next) => {
+//     res.render("login1")
+// });
 
   app.post(
     "/login",
@@ -126,7 +130,7 @@ app.get("/login1", (req, res, next) => {
     })
   );
 
-// END OF TEST =========================
+// END OF AUTH =========================
 
 // middleware
 const checkPermission = require('./src/middleware/checkrole');
@@ -244,6 +248,7 @@ app.get('/viewproduct', (req, res) => {
 });
 
 const Cart = require('./src/model/cartmodel');
+const {isAuthenticated} = require("passport/lib/http/request");
 app.post('/carts', (req, res) => {
   console.log(req.body);
   const cart = new Cart(req.body);
@@ -252,4 +257,7 @@ app.post('/carts', (req, res) => {
     .catch(error => res.send(error));
 });
 
-
+// TEST IMAGE
+app.get('/testimage', (req, res) => {
+  res.render('testimage', {user: req.user});
+});
