@@ -4,7 +4,7 @@ const router = express.Router();
 
 // MIDDLEWARE
 // Check if user is logged in
-const checkAuth = require("../middleware/checkauth");
+const checkAuth = require("../middleware/checkAuth");
 
 
 // GET ROUTES
