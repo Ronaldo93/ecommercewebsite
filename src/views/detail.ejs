@@ -62,7 +62,7 @@
     <div id="contain">
        <div id="img"> <img src="<%= product.thumbnail %>" alt=""></div>
        <div id="information">
-        <form id="productForm" method="POST" action="/carts">
+        <form id="productForm" method="POST" action="/cart/add">
             <div>
               <input type="hidden" name="productThumbnail" value="<%= product.thumbnail %>">
             </div>

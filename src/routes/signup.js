@@ -5,9 +5,6 @@ const checkpass = require('../middleware/checkpass');
 
 
 // MODULES
-// express-validator (validate)
-const { check, validationResult } = require('express-validator');
-
 // router (routing user)
 const router = express.Router();
 
