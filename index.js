@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const MongoStore = require('connect-mongo');
+
+// Only need local storage for now
+// const MongoStore = require('connect-mongo');
 const bcrypt = require('bcryptjs');
 
 // body-parser (should be used before any route, even some middleware)

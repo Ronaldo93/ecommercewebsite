@@ -15,14 +15,12 @@ function imageHandler(req, res, next) {
             req.uploadError = err;
             return next();
         }
-
         if (req.file) {
             req.body.imageBase64 = req.file.buffer.toString('base64');
             req.body.imageMimetype = req.file.mimetype;
             console.log('good');
             next();
         }
-        next();
     });
 }
 

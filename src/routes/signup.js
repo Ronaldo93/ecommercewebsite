@@ -68,18 +68,22 @@ router.get('/', (req, res) => {
 //@access public
 router.post('/new', checkpass, imagehandler, (req, res, next) => {
     // debug
-    JSON.stringify(req.body);
+    // JSON.stringify(req.body);
     passport.authenticate('local_signup',
         {
             session: false,
             failureRedirect: '/signup',
-        }, function (err, user, info) {
+        }, 
+        function (err, user, info) {
             console.log('auth');
             console.log(err);
             console.log(user);
             console.log(info);
             if (err) {
                 return next(err);
+            }
+            if (!user) {
+                return res.redirect('/signup');
             }
             return res.redirect('/');
     })(req, res, next);
