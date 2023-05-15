@@ -21,6 +21,9 @@
     height: fit-content;
     background-color: #e2e1e0;
   }
+  main {
+    margin: 75px 0px;
+  }
 
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap');
 
@@ -123,13 +126,10 @@ header{
     box-shadow: var(--box-shadow);
 }
 
-header .logoimg{
-    width: 500;
-    height: 600;
-}
+
 
 header .logo {
-    font-size: 3.5rem;
+    font-size: 1.5rem;
     font-weight: bolder;
     color:palegreen;
 }
@@ -140,7 +140,7 @@ header .logoimg{
 }
 
 header .navbar a{
-    font-size: 1.7rem;
+    font-size: 1.71..0rem;
     border-radius: .5rem;
     padding: .5rem 1.5rem;
     color:#fff;
@@ -156,9 +156,9 @@ header .icons i,
 header .icons a{
     cursor: pointer;
     margin-left: .5rem;
-    height: 4.5rem;
-    line-height: 4.5rem;
-    width: 4.5rem;
+    height: 3rem;
+    line-height: 3rem;
+    width: 3rem;
     text-align: center;
     font-size: 1.7rem;
     color: #fff;
@@ -281,7 +281,7 @@ header .icons #menu-bars{
 }
 
 .fotter .navbar a{
-    font-size: 1.7rem;
+    font-size:1rem;
     border-radius: .5rem;
     padding: .5rem 1.5rem;
     color:#fff;
