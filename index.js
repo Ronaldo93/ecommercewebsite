@@ -288,6 +288,46 @@ app.post('/cart/:id/delete', (req, res) => {
     .catch(error => res.send(error));
 });
 
+// Order a item from cart
+
+app.get('/cart/:id/order', (req, res) => {
+  Cart.findById(req.params.id)
+    .then(product => {
+      if (!product) {
+        return res.send('Not found any product matching the ID!');
+      }
+      res.render('order_product', { product });
+    })
+    .catch(error => res.send(error));
+});
+const order = require('./src/model/order');
+
+app.post('/cart/:id/order', (req, res) => {
+  Cart.findById(req.params.id)
+    .then(product => {
+      if (!product) {
+        return res.send('Not found any product matching the ID!');
+      }
+      const newOrder = new order({
+        productTitle: product.productTitle,
+        productPrice: product.productPrice,
+        productThumbnail: product.productThumbnail,
+        userName: product.userName,
+        productId: product.productId,
+        productDistributionHub: product.productDistributionHub,
+        address: product.address,
+      });
+      newOrder.save()
+        .then(() => {
+          Cart.findByIdAndDelete(req.params.id)
+            .then(() => res.redirect('/cart'))
+            .catch(error => res.send(error));
+        })
+        .catch(error => res.send(error));
+    })
+    .catch(error => res.send(error));
+});
+
 // TEST IMAGE
 app.get('/testimage', (req, res) => {
   res.render('testimage', {user: req.user});
