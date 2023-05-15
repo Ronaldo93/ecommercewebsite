@@ -232,7 +232,7 @@ app.get('/addproduct', (req, res) => {
 });
 
 app.post('/products', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const product = new Product(req.body);
   product.save()
     .then(() => res.redirect('/product'))
@@ -246,14 +246,45 @@ app.get('/viewproduct', (req, res) => {
   })
   .catch((error) => console.log(error.message));
 });
-
+// Make cart page
 const Cart = require('./src/model/cartmodel');
 const {isAuthenticated} = require("passport/lib/http/request");
 app.post('/carts', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const cart = new Cart(req.body);
   cart.save()
-    .then(() => res.redirect('/product'))
+    .then(() => res.redirect('/cart'))
+    .catch(error => res.send(error));
+});
+
+app.get('/cart', (req, res) => {
+  Cart.find()
+  .then((Cart) => {
+      res.render('cart', {Cart: Cart});
+  })
+  .catch((error) => console.log(error.message));
+});
+
+// Delete a item from cart
+app.get('/cart/:id/delete', (req, res) => {
+  Cart.findById(req.params.id)
+    .then(product => {
+      if (!product) {
+        return res.send('Not found any product matching the ID!');
+      }
+      res.render('delete_product_from_cart', { product });
+    })
+    .catch(error => res.send(error));
+});
+
+app.post('/cart/:id/delete', (req, res) => {
+  Cart.findByIdAndDelete(req.params.id)
+    .then(product => {
+      if (!product) {
+        return res.send('Not found any product matching the ID!');
+      }
+      res.redirect('/cart');
+    })
     .catch(error => res.send(error));
 });
 
