@@ -5,9 +5,6 @@ const checkpass = require('../middleware/checkpass');
 
 
 // MODULES
-// express-validator (validate)
-const { check, validationResult } = require('express-validator');
-
 // router (routing user)
 const router = express.Router();
 
@@ -68,12 +65,13 @@ router.get('/', (req, res) => {
 //@access public
 router.post('/new', checkpass, imagehandler, (req, res, next) => {
     // debug
-    JSON.stringify(req.body);
+    // JSON.stringify(req.body);
     passport.authenticate('local_signup',
         {
             session: false,
             failureRedirect: '/signup',
-        }, function (err, user, info) {
+        }, 
+        function (err, user, info) {
             console.log('auth');
             console.log(err);
             console.log(user);
@@ -84,7 +82,7 @@ router.post('/new', checkpass, imagehandler, (req, res, next) => {
             if (!user) {
                 return res.redirect('/signup');
             }
-            return res.redirect('/login');
+            return res.redirect('/');
     })(req, res, next);
 });
 

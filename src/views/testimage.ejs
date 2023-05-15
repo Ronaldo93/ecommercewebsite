@@ -1,0 +1,17 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- This is the module for user image. It can be defined in CSS to fit the usage -->
+    <% if (user.profile_picture) { %>
+        <img src="data:image/png;base64,<%- user.profile_picture %>">
+    <% } else { %>
+    <div class="noImage">
+        <p>No image found</p>
+    </div>
+    <% } %>
+</body>
+</html>
