@@ -1,0 +1,29 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="userInfo">
+      <div class="profilePicture">
+        <% if (user.profile_picture) { %>
+        <img src="data:image/png;base64,<%- user.profile_picture %>" />
+        <% } else { %>
+        <div class="noImage">
+          <p>No image found</p>
+          <% } %>
+        </div>
+      </div>
+      <div class="userDetail">
+        <h1>User Detail</h1>
+        <p>Name: <%- user.name></p>
+        <p>Address: <%- user.address></p>
+        <p>Role: <%- user.role></p>
+        // display information based on user role
+        <% if (user.role === "customer") { %>
+          <p>Address: <%- user.customer_address></p>
+      </div>
+    </div>
+  </body>
+</html>

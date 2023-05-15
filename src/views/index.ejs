@@ -1,66 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My E-commerce Website</title>
-       <!-- Favicon -->
-   <link rel="icon" href="image/logo.JPG" type="image/png" />
-  
-   <!--font-awesome link-->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="image/logo.JPG" type="image/png" />
 
-   <!--css link-->
-   <link rel="stylesheet" href="/css/global.css ">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+    <!--font-awesome link-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-<body>
-<!--Header section -->
-<header>
-    <a href="#" class="logo"><img src="image/logo.JPG" alt="store logo image" class="logoimg">Shoes or sủa</a>
-    <nav class="navbar"> 
-        <a href="#">Home</a>
+    <!--css link-->
+    <link rel="stylesheet" href="/css/global.css " />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <!--Header section -->
+    <header>
+      <a href="#" class="logo"
+        ><img
+          src="image/logo.JPG"
+          alt="store logo image"
+          class="logoimg"
+        />Shoes or sủa</a
+      >
+      <nav class="navbar">
+        <a href="/">Home</a>
         <a class="active" href="#">Shop</a>
         <a href="#">Blog</a>
         <a href="#">About</a>
         <a href="#">Event</a>
         <a href="#">FAQ</a>
-    </nav>
-    <div class="icons">
+      </nav>
+      <div class="icons">
         <i class="fas fa-bars" id="menu-bars"></i>
         <i class="fas fa-search" id="search-icon"></i>
-        <a href="#" class="fas fa-heart" ></a>
-        <a href="#" class="fas fa-shopping-cart" ></a>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-shopping-cart"></a>
         <i class="fas fa-user" id="login-btn"></i>
-    </div>
+      </div>
 
-   <!--User login form-->
-    <div class="login-form-container">
-        <div id="close-login-btn" class="fas fa-times">
-
-        </div>
+      <!--User login form-->
+      <div class="login-form-container">
+        <div id="close-login-btn" class="fas fa-times"></div>
         <form action="/login" method="post">
-            <h3>sign in</h3>
-            <span>username</span>
-            <input type="text" name="username" class="box" placeholder="enter username" id="username">
-            <span>password</span>
-            <input type="password" name="password" class="box" placeholder="enter password" id="password">
-<!--            <div class="checkbox">-->
-<!--                <input type="checkbox" name="" id="remember-me">-->
-<!--                <label for="remember-me">remember me</label>-->
-<!--            </div>-->
-            <input type="submit" value="sign in" class="btn">
-<!--            <p>forget password?<a href="#">click here</a></p>-->
-            <p>do not have account?<a href=/signup>create one</a></p>
+          <h3>sign in</h3>
+          <span>username</span>
+          <input
+            type="text"
+            name="username"
+            class="box"
+            placeholder="enter username"
+            id="username"
+          />
+          <span>password</span>
+          <input
+            type="password"
+            name="password"
+            class="box"
+            placeholder="enter password"
+            id="password"
+          />
+          <!--            <div class="checkbox">-->
+          <!--                <input type="checkbox" name="" id="remember-me">-->
+          <!--                <label for="remember-me">remember me</label>-->
+          <!--            </div>-->
+          <input type="submit" value="sign in" class="btn" />
+          <!--            <p>forget password?<a href="#">click here</a></p>-->
+          <p>do not have account?<a href="/signup">create one</a></p>
         </form>
-    </div>
-</header>
+      </div>
+    </header>
 
-   <!-- <section class="header">
+    <!-- <section class="header">
         <a href="#" <img src="/images/logo.png" alt="My Logo"></a>
 
         <div>
@@ -77,29 +98,29 @@
     </section> -->
 
     <section id="ad">
-        <h4>Free Shipping on Orders Over $50</h4>
-        <h2>Get 20% Off Your First Order | Use Code: FIRST20</h2>
-        <h1>Summer Sale</h1>
-        <p>Shop now and step out in style!</p>
-        <button>Shop Now</button>
+      <h4>Free Shipping on Orders Over $50</h4>
+      <h2>Get 20% Off Your First Order | Use Code: FIRST20</h2>
+      <h1>Summer Sale</h1>
+      <p>Shop now and step out in style!</p>
+      <button>Shop Now</button>
     </section>
 
     <section id="feature">
-        <div class="fe-box">
-            <img src="" alt="">
-
-        </div>
-<!--Fotter-->
- <section class="fotter">
-    <nav class="navbar"> 
+      <div class="fe-box">
+        <img src="" alt="" />
+      </div>
+    </section>
+    <!--Fotter-->
+    <section class="fotter">
+      <nav class="navbar">
         <a href="#">About Us</a>
         <a href="#">Privacy Policy</a>
         <a href="#">Terms</a>
         <a href="#">Copyright</a>
         <a href="#">Contact Us </a>
-    </nav>
-  </section>
-  
-  <!--js link-->
-  <script src="/js/script.js"></script>
-</body>
+      </nav>
+    </section>
+    <!--js link-->
+    <script src="/js/script.js"></script>
+  </body>
+</html>

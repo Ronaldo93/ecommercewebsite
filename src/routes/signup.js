@@ -40,6 +40,7 @@ passport.use(
             encrypted_password: bcrypt.hashSync(password, 10),
             profile_picture: req.body.imageBase64,
             role: req.body.role,
+            customer_address: req.body.customeraddress,
             businessname: req.body.businessname,
             businessaddress: req.body.businessaddress,
             distributionHub: {
@@ -64,6 +65,15 @@ passport.use(
 router.get("/", (req, res) => {
   res.render("signup_demo");
 });
+
+// @route GET /signup/customer
+// @desc render signup page for customer
+// @access public
+router.get("/customer", (req, res) => {
+  req.body.role = "customer";
+  res.render("signup_customer");
+});
+
 
 //@route POST /signup/new
 //@desc register new user
