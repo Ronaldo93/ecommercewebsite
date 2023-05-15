@@ -60,6 +60,15 @@
   </div>
 </header>
 
+  <!-- flash -->
+  <% if (flash && flash.length > 0) { %>
+    <div class="flash">
+      <div class="flash-text">
+        <p><%= flash %></p>
+      </div>
+    </div>
+  <% } %>
+
   <div class="container">
     <div class="filter">
       <div id="search">

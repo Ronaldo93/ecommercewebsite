@@ -19,8 +19,10 @@ function imageHandler(req, res, next) {
             req.body.imageBase64 = req.file.buffer.toString('base64');
             req.body.imageMimetype = req.file.mimetype;
             console.log('good');
-            next();
+            return next();
         }
+        console.log('no file found! skipping...')
+        next();
     });
 }
 

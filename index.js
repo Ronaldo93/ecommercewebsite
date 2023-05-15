@@ -109,8 +109,10 @@ app.get("/success", checkAuth, (req, res, next) => {
     // console.log("req.logout:", req.logout);
     // console.log("req.isAuthenticated: ", req.isAuthenticated());
     console.log('req.query: ', req.query);
-    req.flash("login success! Welcome " + req.user.username + "!"); // req.user is the user object
-    res.redirect("/product");
+    res.locals.message = req.flash("message","login success! Welcome " + req.user.username + "!");
+    setTimeout(() => {
+      res.redirect("/product");
+    }, 2000);
   });
 
 // ui for login (disabled cuz no need)
@@ -118,8 +120,7 @@ app.get("/success", checkAuth, (req, res, next) => {
 //     res.render("login1")
 // });
 
-  app.post(
-    "/login",
+  app.post("/login",
     function (req, res, next) {
       console.log(req.body);
       next();
