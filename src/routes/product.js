@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Product = require("../model/product");
 
-//@GET /product/:id
+//@route GET /product/:id
 //@desc render detail page
 //@access public
 router.get("/:id", (req, res) => {

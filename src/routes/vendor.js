@@ -22,7 +22,7 @@ router.get("/viewproduct", (req, res) => {
     .catch((error) => console.log(error.message));
 });
 
-//@route POST /vendor/add
+//@route POST /vendor/addproduct
 //@desc add new product
 //@access public
 router.post("/addproduct", (req, res) => {
