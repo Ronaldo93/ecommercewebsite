@@ -194,19 +194,6 @@ app.use('/cart', cart);
 app.use('/vendor', vendor);
 app.use('/shipper', shipper);
 
-// mongoose
-const mongoose = require('mongoose');
-
-
-
-// MONGODB
-// uri for mongodb atlas
-// const uri = "mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority";
-// connect to mongodb server
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Error connecting to MongoDB', err));
-
 // static route
 app.get("/about", (req, res) => res.render("static_about"));
 app.get("/contact", (req, res) => res.render("contact"));
