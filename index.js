@@ -176,6 +176,7 @@ app.use("/user", user);
 app.get("/about", (req, res) => res.render("static_about"));
 app.get("/contact", (req, res) => res.render("contact"));
 app.get("/privacy", (req, res) => res.render("static_privacy"));
+app.get("/help", (req, res) => res.render("static_help"));
 
 // mongoose
 const mongoose = require("mongoose");

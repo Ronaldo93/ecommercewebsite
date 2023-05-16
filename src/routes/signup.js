@@ -74,6 +74,21 @@ router.get("/customer", (req, res) => {
   res.render("signup_customer");
 });
 
+// @route GET /signup/vendor
+// @desc render signup page for vendor
+// @access public
+router.get("/vendor", (req, res) => {
+  req.body.role = "vendor";
+  res.render("signup_vendor");
+});
+
+// @route GET /signup/shipper
+// @desc render signup page for shipper
+// @access public
+router.get("/shipper", (req, res) => {
+  req.body.role = "shipper";
+  res.render("signup_shipper", { distributionHub: distributionHubQuery() });
+});
 
 //@route POST /signup/new
 //@desc register new user
@@ -102,5 +117,17 @@ router.post("/new", checkpass, imagehandler, (req, res, next) => {
     }
   )(req, res, next);
 });
+
+// distribution hub query
+function distributionHubQuery() {
+  // find all distribution hub
+  User.find({ distributionHub: { $exists: true } })
+    .then((users) => {
+      return users.distributionHub;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
 module.exports = router;
