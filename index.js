@@ -17,7 +17,8 @@ const mongoose = require("mongoose");
 
 // MONGODB
 // uri for mongodb atlas
-const uri ="mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority";
+const uri =
+  "mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority";
 // connect to mongodb server
 mongoose
   .connect(uri, {
@@ -182,17 +183,17 @@ app.set("view engine", "ejs");
 const port = 3000;
 
 // route define
-const signup = require('./src/routes/signup');
-const product = require('./src/routes/product');
-const cart = require('./src/routes/cart');
-const vendor = require('./src/routes/vendor');
-const shipper = require('./src/routes/shipper');
+const signup = require("./src/routes/signup");
+const product = require("./src/routes/product");
+const cart = require("./src/routes/cart");
+const vendor = require("./src/routes/vendor");
+const shipper = require("./src/routes/shipper");
 // route
-app.use('/signup', signup);
-app.use('/product', product);
-app.use('/cart', cart);
-app.use('/vendor', vendor);
-app.use('/shipper', shipper);
+app.use("/signup", signup);
+app.use("/product", product);
+app.use("/cart", cart);
+app.use("/vendor", vendor);
+app.use("/shipper", shipper);
 
 // static route
 app.get("/about", (req, res) => res.render("static_about"));
@@ -219,6 +220,22 @@ app.get("/getusers", (req, res) => {
   User.find()
     .then((users) => {
       res.send(users);
+    })
+    .catch((err) => console.log(err));
+});
+
+const DistributionHub = require("./src/model/distributionhub");
+
+// TEST: ADD DISTRIBUTION HUB
+app.post("/addhub", (req, res) => {
+  const hub = new DistributionHub({
+    distributionHubname: req.body.distributionHubname,
+    distributionHubaddress: req.body.distributionHubaddress,
+  });
+  hub
+    .save()
+    .then((result) => {
+      res.send(result);
     })
     .catch((err) => console.log(err));
 });
