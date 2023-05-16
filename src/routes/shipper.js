@@ -45,11 +45,13 @@ router.get("/:distributionHubname/:id", (req, res) => {
 
   // Replace hyphen with space in distributionHubname
   const hub = distributionHubname.replace("-", " ");
-
+  // populate the distribution hub to get all info from distribution hub schema
   order
     .findById(id)
+    .populate("distributionHub")
     .then((product) => {
-      if (product.distributionHubname == hub) {
+      console.log(product.distributionHub.name);
+      if (product.distributionHub.name == hub) {
         res.render("update_hub", { product });
       } else {
         res.send("Not found any product");
