@@ -28,13 +28,13 @@
         // Shipper
         <% } else if (user.role === "shipper") { %>
           <b>Distribution Hub information:</b>
-          <p>- Name: <%- user.distributionHub.name></p>
-          <p>- Address: <%- user.distributionHub.address></p>
+          <p>Name: <%- user.distributionHubname></p>
           <p>Shipper address: <%- user.shipper_address></p>
         // Vendor
         <% } else if (user.role === "vendor") { %>
           <p>Business name: <%- user.businessname %></p>
           <p>Business address: <%- user.businessaddress %></p>
+        <% } %>
       </div>
     </div>
   </body>

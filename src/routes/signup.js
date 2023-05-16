@@ -34,7 +34,20 @@ passport.use(
           if (user) {
             return done(null, false, { message: "Username already exists." });
           }
-          // check for the
+          // check for the distribution hub _id & modify the request body
+          if (req.body.role === "shipper") {
+            distributionHub
+              .findOne({ distributionHubname: req.body.distributionHubname })
+              .then((hub) => {
+                if (hub) {
+                  req.body.distributionHubname = hub._id;
+                } else {
+                  return done(null, false, {
+                    message: "Distribution Hub does not exist.",
+                  });
+                }
+              });
+          }
           // create new user
           const newUser = new User({
             name: req.body.name,
@@ -119,9 +132,9 @@ router.post("/new", checkpass, imagehandler, (req, res, next) => {
 // distribution hub query
 function distributionHubQuery() {
   // find all distribution hub
-  User.find({ distributionHubname: { $exists: true } })
-    .then((users) => {
-      return users.distributionHub;
+  distributionHub.find({ distributionHubname: { $exists: true } })
+    .then((hub) => {
+      return hub.distributionHub;
     })
     .catch((err) => {
       console.log(err);

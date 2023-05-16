@@ -107,7 +107,14 @@ passport.use(
             if (!bcrypt.compareSync(password, user.encrypted_password)) {
               return done(null, false, { message: "Incorrect password." });
             }
-            return done(null, user);
+            // for shipper only, if user is not shipper, return null
+            distributionHub
+              .findOne({ distributionHubname: user.distributionHubname })
+              .then((hub) => {
+                console.log("Hub found:", hub);
+                user.distributionHubname = hub.distributionHubname;
+                return done(null, user);
+              });
           } else {
             console.log("User not found");
             return done(null, false, {
@@ -225,6 +232,7 @@ app.get("/getusers", (req, res) => {
 });
 
 const DistributionHub = require("./src/model/distributionhub");
+const distributionHub = require("./src/model/distributionhub");
 
 // TEST: ADD DISTRIBUTION HUB
 app.post("/addhub", (req, res) => {
