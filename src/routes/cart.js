@@ -3,7 +3,10 @@ const router = express.Router();
 
 // CART ROUTE
 // Make cart page
+
+// Model
 const Cart = require("../model/cartmodel");
+const distributionHub = require("../model/distributionhub");
 
 // @route POST /cart/add
 // @desc add new product to cart
@@ -81,13 +84,24 @@ router.post("/:id/order", (req, res) => {
       if (!product) {
         return res.send("Not found any product matching the ID!");
       }
+      distributionHub
+        .findOne({
+          distributionHubname: product.distributionHubname,
+        })
+        .then((distributionHub) => {
+          if (!distributionHub) {
+            return res.send(
+              "Not found any distribution hub matching the name!"
+            );
+          }
+        });
       const newOrder = new order({
         productTitle: product.productTitle,
         productPrice: product.productPrice,
         productThumbnail: product.productThumbnail,
         userName: product.userName,
         productId: product.productId,
-        distributionHubname: product.distributionHubname,
+        distributionHubname: distributionHub._id,
         address: product.address,
       });
       newOrder

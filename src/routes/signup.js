@@ -15,6 +15,7 @@ const bcrypt = require("bcryptjs");
 // MAIN PART
 // 1. import user model
 const User = require("../model/usermodel");
+const distributionHub = require("../model/distributionhub");
 
 // 2. passport for registeration
 passport.use(
@@ -33,6 +34,7 @@ passport.use(
           if (user) {
             return done(null, false, { message: "Username already exists." });
           }
+          // check for the
           // create new user
           const newUser = new User({
             name: req.body.name,
@@ -42,9 +44,7 @@ passport.use(
             role: req.body.role,
             customer_address: req.body.customeraddress,
             businessname: req.body.businessname,
-            businessaddress: req.body.businessaddress,
             distributionHubname: req.body.distributionHubname,
-            distributionHubaddress: req.body.distributionHubaddress
           });
           newUser.save();
           return done(null, newUser);
