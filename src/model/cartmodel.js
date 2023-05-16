@@ -25,7 +25,7 @@ const cartSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your product id"],
   },
-  productDistributionHub: {
+  distributionHubname: {
     type: String,
     required: [true, "Please enterDistribution Hub"],
   },

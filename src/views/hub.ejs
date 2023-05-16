@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/hub.css">
-    <link rel="stylesheet" href="/ccs/global.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/css/hub.css" />
+    <link rel="stylesheet" href="/ccs/global.css" />
+  </head>
+  <body>
     <main>
       <div id="searchResults">
         <% if (orders.length > 0) { %>
@@ -31,7 +31,7 @@
             <td><%= order.productPrice %></td>
             <td><%= order.userName %></td>
             <td><%= order.productId %></td>
-            <td><%= order.productDistributionHub %></td>
+            <td><%= order.distributionHubname %></td>
             <td><%= order.address %></td>
             <td>
               <img
@@ -43,7 +43,11 @@
             </td>
             <td><%=order.order_status%></td>
             <td>
-              <a class="update-button" href="/shipper/<%= order.productDistributionHub.replace(' ', '-') %>/<%= order._id %>">Update</a>
+              <a
+                class="update-button"
+                href="/shipper/<%= order.distributionHubname.replace(' ', '-') %>/<%= order._id %>"
+                >Update</a
+              >
             </td>
           </tr>
           <% }); %>
@@ -53,5 +57,5 @@
         <% } %>
       </div>
     </main>
-</body>
+  </body>
 </html>

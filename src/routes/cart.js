@@ -87,7 +87,7 @@ router.post("/:id/order", (req, res) => {
         productThumbnail: product.productThumbnail,
         userName: product.userName,
         productId: product.productId,
-        productDistributionHub: product.productDistributionHub,
+        distributionHubname: product.distributionHubname,
         address: product.address,
       });
       newOrder

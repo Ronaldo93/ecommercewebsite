@@ -31,12 +31,13 @@ const order = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  distributionHubaddress: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
-  // --
-  address: {
+  // CONSIDER THIS
+  // distributionHubaddress: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "User",
+  // },
+  // ----------------
+  address: { 
     type: String,
     required: [true, "Please enter your address"],
   },

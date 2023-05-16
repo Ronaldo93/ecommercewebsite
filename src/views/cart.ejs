@@ -39,7 +39,7 @@
           <td><%= cart.productPrice %></td>
           <td><%= cart.userName %></td>
           <td><%= cart.productId %></td>
-          <td><%= cart.productDistributionHub %></td>
+          <td><%= cart.distributionHubname %></td>
           <td><%= cart.address %></td>
           <td>
             <img
@@ -55,19 +55,19 @@
         <% }); %>
       </table>
       <% } else { %>
-        <table>
-          <tr>
-            <th>Product Title</th>
-            <th>Product Price</th>
-            <th>User Name</th>
-            <th>Product ID</th>
-            <th>Distribution Hub</th>
-            <th>Address</th>
-            <th>Thumbnail</th>
-            <th>Order</th>
-            <th>Delete</th>
-          </tr>
-        </table>  
+      <table>
+        <tr>
+          <th>Product Title</th>
+          <th>Product Price</th>
+          <th>User Name</th>
+          <th>Product ID</th>
+          <th>Distribution Hub</th>
+          <th>Address</th>
+          <th>Thumbnail</th>
+          <th>Order</th>
+          <th>Delete</th>
+        </tr>
+      </table>
       <% } %>
     </div>
   </body>

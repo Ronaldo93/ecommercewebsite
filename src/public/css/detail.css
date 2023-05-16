@@ -77,7 +77,7 @@ div#img {
 
 /* Style for the user name input */
 #userName,
-#productDistributionHub,
+#distributionHubname,
 #quantity,
 #address {
   flex-grow: 1;
