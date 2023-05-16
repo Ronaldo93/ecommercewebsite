@@ -108,11 +108,13 @@ passport.use(
               return done(null, false, { message: "Incorrect password." });
             }
             // for shipper only, if user is not shipper, return null
+            // TODO: fix this
             distributionHub
-              .findOne({ distributionHubname: user.distributionHubname })
+              .findOne({ name: user.distributionHub })
+              .populate("name")
               .then((hub) => {
                 console.log("Hub found:", hub);
-                user.distributionHubname = hub.distributionHubname;
+                user.distributionHub = hub._id;
                 return done(null, user);
               });
           } else {
@@ -237,8 +239,8 @@ const distributionHub = require("./src/model/distributionhub");
 // TEST: ADD DISTRIBUTION HUB
 app.post("/addhub", (req, res) => {
   const hub = new DistributionHub({
-    distributionHubname: req.body.distributionHubname,
-    distributionHubaddress: req.body.distributionHubaddress,
+    name: req.body.name,
+    address: req.body.address,
   });
   hub
     .save()

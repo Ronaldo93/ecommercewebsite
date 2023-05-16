@@ -57,7 +57,7 @@ passport.use(
             role: req.body.role,
             customer_address: req.body.customeraddress,
             businessname: req.body.businessname,
-            distributionHubname: req.body.distributionHubname,
+            distributionHub: req.body.distributionHub,
           });
           newUser.save();
           return done(null, newUser);
@@ -98,7 +98,7 @@ router.get("/vendor", (req, res) => {
 // @access public
 router.get("/shipper", (req, res) => {
   req.body.role = "shipper";
-  res.render("signup_shipper", { distributionHubname: distributionHubQuery() });
+  res.render("signup_shipper", { distributionHub: distributionHubQuery() });
 });
 
 //@route POST /signup/new
@@ -132,9 +132,10 @@ router.post("/new", checkpass, imagehandler, (req, res, next) => {
 // distribution hub query
 function distributionHubQuery() {
   // find all distribution hub
-  distributionHub.find({ distributionHubname: { $exists: true } })
+  distributionHub
+    .find({ name: { $exists: true } })
     .then((hub) => {
-      return hub.distributionHub;
+      return hub;
     })
     .catch((err) => {
       console.log(err);

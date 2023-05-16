@@ -5,18 +5,18 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 const distributionhub = new mongoose.Schema({
-  role: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  distributionHubname: {
+  name: {
     type: String,
     minlength: 5,
-    required: function () {
-      return this.role === "shipper";
-    },
+    // required: function () {
+    //   return this.user.role === "shipper";
+    // },
   },
-  distributionHubaddress: {
+  address: {
     type: String,
     minlength: 5,
     // required: function () {

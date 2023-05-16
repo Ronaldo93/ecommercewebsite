@@ -31,7 +31,7 @@
             <td><%= order.productPrice %></td>
             <td><%= order.userName %></td>
             <td><%= order.productId %></td>
-            <td><%= order.distributionHubname %></td>
+            <td><%= order.distributionHub.name %></td>
             <td><%= order.address %></td>
             <td>
               <img
@@ -43,9 +43,10 @@
             </td>
             <td><%=order.order_status%></td>
             <td>
+              <!-- ref to name field in the object -->
               <a
                 class="update-button"
-                href="/shipper/<%= order.distributionHubname.replace(' ', '-') %>/<%= order._id %>"
+                href="/shipper/<%= order.distributionHub.name.replace(' ', '-') %>/<%= order._id %>"
                 >Update</a
               >
             </td>

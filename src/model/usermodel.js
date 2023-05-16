@@ -57,11 +57,7 @@ const userSchema = new mongoose.Schema({
     },
   },
   // ==========Shipper==========
-  distributionHubname: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "distributionHub",
-  },
-  distributionHubaddress: {
+  distributionHub: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "distributionHub",
   },

@@ -27,7 +27,7 @@ const order = new mongoose.Schema({
   //   required: [true, "Please enter Distribution Hub"],
   // },
   // --> CHANGES TO THIS
-  distributionHubname: {
+  distributionHub: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "distributionHub",
   },
