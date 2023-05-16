@@ -29,7 +29,7 @@ const order = new mongoose.Schema({
   // --> CHANGES TO THIS
   distributionHubname: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "distributionHub",
   },
   // CONSIDER THIS
   // distributionHubaddress: {
@@ -37,7 +37,7 @@ const order = new mongoose.Schema({
   //   ref: "User",
   // },
   // ----------------
-  address: { 
+  address: {
     type: String,
     required: [true, "Please enter your address"],
   },

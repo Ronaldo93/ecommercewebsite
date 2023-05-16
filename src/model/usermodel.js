@@ -58,22 +58,12 @@ const userSchema = new mongoose.Schema({
   },
   // ==========Shipper==========
   distributionHubname: {
-      type: String,
-      minlength: 5,
-      // required: function() {
-      // return this.role === 'shipper';
-      required: function () {
-        return this.role === "shipper";
-      },
-    },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "distributionHub",
+  },
   distributionHubaddress: {
-    type: String,
-    minlength: 5,
-    // required: function() {
-    //   return this.role === 'shipper';
-    required: function () {
-      return this.role === "shipper";
-    },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "distributionHub",
   },
   // ==========ROLE==========
   role: {
