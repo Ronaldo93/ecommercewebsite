@@ -3,7 +3,7 @@ function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("/login"); // redirect to login page if not authenticated
+  res.redirect("/"); // redirect to home page if not authenticated
 }
 
 module.exports = checkAuth;
