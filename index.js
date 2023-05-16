@@ -12,6 +12,23 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
+// mongoose
+const mongoose = require("mongoose");
+
+// MONGODB
+// uri for mongodb atlas
+const uri =
+  "mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority";
+// connect to mongodb server
+mongoose
+  .connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    socketTimeoutMS: 5000, // 5 second
+  })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("Error connecting to MongoDB", err));
+
 // WIP - SESSION
 // COOKIES
 // 1. Requirements
@@ -84,12 +101,19 @@ passport.use(
     (req, username, password, done) => {
       User.findOne({ username: username })
         .then((user) => {
-          if (user) {
+          if (user !== null) {
+            console.log("User found:", user); // debug
             // compare password
             if (!bcrypt.compareSync(password, user.encrypted_password)) {
               return done(null, false, { message: "Incorrect password." });
             }
             return done(null, user);
+          } else {
+            console.log("User not found");
+            return done(null, false, {
+              message:
+                "Either the credential is incorrect, or you haven't signed up. Please check again",
+            });
           }
         })
         .catch((err) => {
@@ -178,19 +202,6 @@ app.get("/contact", (req, res) => res.render("contact"));
 app.get("/privacy", (req, res) => res.render("static_privacy"));
 app.get("/help", (req, res) => res.render("static_help"));
 
-// mongoose
-const mongoose = require("mongoose");
-
-// MONGODB
-// uri for mongodb atlas
-const uri =
-  "mongodb+srv://adc:7fvsHmHceMCXn48R@cluster0.rkmbxva.mongodb.net/ecommerce?retryWrites=true&w=majority";
-// connect to mongodb server
-mongoose
-  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Error connecting to MongoDB", err));
-
 // MISCELLANEOUS
 // Port: listening on 3000
 app.listen(port, () => {
@@ -200,4 +211,16 @@ app.listen(port, () => {
 // TEST IMAGE
 app.get("/testimage", (req, res) => {
   res.render("testimage", { user: req.user });
+});
+
+// THE SECTION BELOW IS FOR DEBUGGING PURPOSES ONLY
+// DO NOT USE IN PRODUCTION
+
+// TEST: GET ALL USERS
+app.get("/getusers", (req, res) => {
+  User.find()
+    .then((users) => {
+      res.send(users);
+    })
+    .catch((err) => console.log(err));
 });
