@@ -44,7 +44,7 @@ router.get("/:id/delete", (req, res) => {
 // @route POST /cart/:id/delete
 // @desc delete a product from cart
 // @access public
-router.post("/cart/:id/delete", (req, res) => {
+router.post("/:id/delete", (req, res) => {
   Cart.findByIdAndDelete(req.params.id)
     .then((product) => {
       if (!product) {

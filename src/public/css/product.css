@@ -78,7 +78,7 @@ div.filter {
     width: 100%;
   }
   #search-input {
-    width: 200px;
+    width: 100px;
   }
   .filter {
     /* flex-direction: column;
