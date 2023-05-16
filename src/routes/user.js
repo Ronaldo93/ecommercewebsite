@@ -6,7 +6,6 @@ const router = express.Router();
 // Check if user is logged in
 const checkAuth = require("../middleware/checkAuth");
 
-
 // GET ROUTES
 // @route GET /logout
 // @desc logout user
@@ -25,7 +24,7 @@ router.get("/logout", (req, res) => {
 // @desc render user profile page
 // @access private
 router.get("/profile", checkAuth, (req, res) => {
-  res.render("profile", { user: req.user });
+  res.render("user_profile", { user: req.user });
 });
 
 module.exports = router;
