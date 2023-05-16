@@ -34,8 +34,8 @@
         />Shoes or sủa</a
       >
       <nav class="navbar">
-        <a href="/">Home</a>
-        <a class="active" href="#">Shop</a>
+        <a href="/" class="active">Home</a>
+        <a class="" href="#">Shop</a>
         <a href="#">Blog</a>
         <a href="#">About</a>
         <a href="#">Event</a>
@@ -46,7 +46,15 @@
         <i class="fas fa-search" id="search-icon"></i>
         <a href="#" class="fas fa-heart"></a>
         <a href="#" class="fas fa-shopping-cart"></a>
+        <!-- show login button only if authenticated = false -->
+        <% if (!authenticated) { %>
         <i class="fas fa-user" id="login-btn"></i>
+        <% } else { %>
+        <a href="/user/profile">
+          <i class="fas fa-user"></i>
+        </a>
+        <a href="/logout" class="fas fa-sign-out-alt"></a>
+        <% } %>
       </div>
 
       <!--User login form-->
@@ -115,7 +123,7 @@
       <nav class="navbar">
         <a href="/about">About Us</a>
         <a href="/privacy">Privacy Policy</a>
-        <a href="#">Terms</a>
+        <!-- <a href="#">Terms</a> -->
         <!-- <a href="#">Copyright</a> -->
         <!-- 2023 ABC inc. All rights Reserved -->
         <!-- <a href="">Contact Us </a> -->

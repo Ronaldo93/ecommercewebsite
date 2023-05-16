@@ -25,7 +25,7 @@ const flash = require("express-flash");
 // authentication middleware: passport
 const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
-// other middleware
+// other middleware (checkauth and authenticated for checking user status)
 const checkAuth = require("./src/middleware/checkAuth");
 
 // The whole server uses flash
@@ -107,7 +107,7 @@ app.get("/", (req, res) => {
   console.log("req.login: ", req.login);
   console.log("req.logout:", req.logout);
   console.log("req.isAuthenticated: ", req.isAuthenticated());
-  res.render("index");
+  res.render("index", { authenticated: req.isAuthenticated() });
 });
 
 app.get("/failed", (req, res, next) => {
