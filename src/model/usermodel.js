@@ -57,8 +57,7 @@ const userSchema = new mongoose.Schema({
     },
   },
   // ==========Shipper==========
-  distributionHub: {
-    name: {
+  distributionHubname: {
       type: String,
       minlength: 5,
       // required: function() {
@@ -67,14 +66,13 @@ const userSchema = new mongoose.Schema({
         return this.role === "shipper";
       },
     },
-    address: {
-      type: String,
-      minlength: 5,
-      // required: function() {
-      //   return this.role === 'shipper';
-      required: function () {
-        return this.role === "shipper";
-      },
+  distributionHubaddress: {
+    type: String,
+    minlength: 5,
+    // required: function() {
+    //   return this.role === 'shipper';
+    required: function () {
+      return this.role === "shipper";
     },
   },
   // ==========ROLE==========

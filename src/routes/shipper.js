@@ -4,6 +4,10 @@ const router = express.Router();
 
 const order = require("../model/order");
 // Make diffetent Distribution Hub page
+
+// @route GET /shipper/:productDistributionHub
+// @desc render productDistributionHub page
+// @access private
 router.get("/:productDistributionHub", (req, res) => {
     const productDistributionHub = req.params.productDistributionHub;
     const hub = productDistributionHub.replace('-', ' ');
@@ -21,6 +25,7 @@ router.get("/:productDistributionHub", (req, res) => {
         res.render("error", { message: "Error retrieving orders" });
       });
   });
+
   // Make update hub
   router.get('/:productDistributionHub/:id', (req, res) => {
     const { productDistributionHub, id } = req.params;
