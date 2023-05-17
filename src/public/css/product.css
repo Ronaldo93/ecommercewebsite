@@ -7,14 +7,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
 
+  border-radius:8px;
+}
+b { width: 100%;
+  font-size: 20px;
+  margin: 5px;
+}
+a {
+  color: white;
+}
+.text-limit {
+  overflow: hidden;
+  max-height: calc(1.5em * 4); /* Adjust this value based on the line-height and desired number of lines */
+  line-height: 1.5em; /* Adjust this value to match the line height of your text */
+  margin: 10px 0px;
+
+  padding: 5px;
+}
 #search-input {
   width: 70%;
 }
 div.filter {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   margin: 5% 0px;
   background-color: rgb(23, 167, 23);
@@ -42,9 +59,9 @@ div.filter {
   flex-wrap: wrap;
   justify-content: center;
 }
-.button {
+/* .button {
   width: 50%;
-  margin: 0px auto;
+  margin: 5px auto;
   text-align: center;
   background: linear-gradient(#b986d6, #88daa1);
   border: 4px solid #e4a13d;
@@ -53,10 +70,14 @@ div.filter {
 }
 .button:hover {
   transform: scale(1.2, 1.2);
-}
-#name {
+} */
+.name b, .price b {
   display: flex;
   justify-content: center;
+  width: 100%;
+}
+.price b  {
+  color: #e4a13d;
 }
 @media only screen and (max-width: 1023px) {
   .product-card {

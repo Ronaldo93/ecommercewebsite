@@ -9,12 +9,15 @@ main {
   align-items: center;
 }
 
+
 /* Style for the container */
 #contain {
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin: 50px;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
+
 }
 
 /* Style for the product image */
