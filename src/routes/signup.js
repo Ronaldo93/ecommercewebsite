@@ -57,6 +57,7 @@ passport.use(
             role: req.body.role,
             customer_address: req.body.customeraddress,
             businessname: req.body.businessname,
+            businessaddress: req.body.businessaddress,
             distributionHub: req.body.distributionHub,
           });
           newUser.save();

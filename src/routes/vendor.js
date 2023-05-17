@@ -1,14 +1,22 @@
 const express = require("express");
 const router = express.Router();
 
+const User = require("../model/usermodel");
 const Product = require("../model/product");
 // VENDOR ROUTES
 
 //@route GET /vendor/addproduct
 //@desc render add product page
 //@access private
-router.get("/addproduct", (req, res) => {
-  res.render("add_product", { user: req.user });
+router.get("/addproduct", async (req, res) => {
+  let userid = await User.findOne({ _id: req.user._id })
+    .then((user) => {
+      console.log(user._id);
+      return user._id;
+    })
+    .catch((error) => console.log(error.message));
+  res.render("add_product", { userid: userid });
+  // res.render("add_product");
 });
 
 // @route GET /vendor/viewproduct

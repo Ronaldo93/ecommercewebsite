@@ -96,9 +96,9 @@ passport.use(
     {
       usernameField: "username",
       passwordField: "password",
-      passReqToCallback: true,
+      // passReqToCallback: true,
     },
-    (req, username, password, done) => {
+    (username, password, done) => {
       User.findOne({ username: username })
         .then((user) => {
           if (user !== null) {
@@ -108,14 +108,17 @@ passport.use(
               return done(null, false, { message: "Incorrect password." });
             }
             // for shipper only, if user is not shipper, return null
-            // TODO: fix this
-            distributionHub
-              .findOne({ name: req.body.distributionHubname })
-              .then((hub) => {
-                console.log("Hub found:", hub);
-                user.distributionHub = hub._id;
-                return done(null, user);
-              });
+            // fix this
+            // if (user.role === "shipper") {
+            //   distributionHub
+            //     .findOne({ name: req.body.distributionHubname })
+            //     .then((hub) => {
+            //       console.log("Hub found:", hub);
+            //       user.distributionHub = hub._id;
+            //       return done(null, user);
+            //     });
+            // } else {
+            return done(null, user);
           } else {
             console.log("User not found");
             return done(null, false, {
@@ -200,7 +203,7 @@ const shipper = require("./src/routes/shipper");
 app.use("/signup", signup);
 app.use("/product", product);
 app.use("/cart", cart);
-app.use("/vendor", vendor);
+app.use("/vendor", checkPermission("vendor"), vendor);
 app.use("/shipper", shipper);
 
 // static route

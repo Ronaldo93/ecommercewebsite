@@ -183,28 +183,28 @@ body {
   }
   
   .product h3 {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 5px;
   }
   
   .product p {
-    font-size: 14px;
+    font-size: 8px;
     color: #999;
     margin-bottom: 10px;
   }
   
   .product a {
     display: inline-block;
-    background-color: #007bff;
+    background-color: #f2420c;
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 8px;
     margin-top: 10px;
   }
   
   .product a:hover {
-    background-color: #0062cc;
+    background-color: #4c9900;
   }
   
