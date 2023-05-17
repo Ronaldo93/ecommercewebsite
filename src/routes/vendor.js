@@ -8,7 +8,7 @@ const Product = require("../model/product");
 //@desc render add product page
 //@access private
 router.get("/addproduct", (req, res) => {
-  res.render("add_product");
+  res.render("add_product", { user: req.user });
 });
 
 // @route GET /vendor/viewproduct

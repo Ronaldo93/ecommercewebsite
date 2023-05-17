@@ -17,7 +17,7 @@ const products = new mongoose.Schema({
   vendor: {
     // refer to user table
     type: mongoose.Schema.Types.ObjectId,
-    ref: "distributionHub",
+    ref: "User",
   },
 });
 
