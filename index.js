@@ -110,8 +110,7 @@ passport.use(
             // for shipper only, if user is not shipper, return null
             // TODO: fix this
             distributionHub
-              .findOne({ name: user.distributionHub })
-              .populate("name")
+              .findOne({ name: req.body.distributionHubname })
               .then((hub) => {
                 console.log("Hub found:", hub);
                 user.distributionHub = hub._id;

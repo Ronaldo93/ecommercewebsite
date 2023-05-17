@@ -20,10 +20,12 @@
 
       <!-- a group of selection from querying the distributionHub -->
       <label for="distributionHub">Select a Distribution Hub:</label>
+      <!-- the name of the select = the part after req.body (in this case - req.body.distributionHub) -->
+      <!-- only if using expressjs + node -->
       <select id="distributionHub" name="distributionHub">
-        <% for (let i = 0; i < distributionHubname.length; i++) { %>
-        <option value="<%= distributionHubname[i] %>">
-          <%= distributionHubname[i] %>
+        <% for (let i = 0; i < distributionHub.length; i++) { %>
+        <option value="<%= distributionHub[i]._id %>">
+          <%= distributionHub[i].name %>
         </option>
         <% } %></select
       ><br />

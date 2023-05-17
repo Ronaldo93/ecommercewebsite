@@ -94,11 +94,13 @@ router.get("/vendor", (req, res) => {
 });
 
 // @route GET /signup/shipper
-// @desc render signup page for shipper
+// @desc render signup page for shipper (use async await to get distribution hub list)
 // @access public
-router.get("/shipper", (req, res) => {
+router.get("/shipper", async (req, res) => {
   req.body.role = "shipper";
-  res.render("signup_shipper", { distributionHub: distributionHubQuery() });
+  let distributionHub = await distributionHubQuery();
+  console.log(distributionHub);
+  res.render("signup_shipper", { distributionHub: distributionHub });
 });
 
 //@route POST /signup/new
@@ -130,11 +132,13 @@ router.post("/new", checkpass, imagehandler, (req, res, next) => {
 });
 
 // distribution hub query
-function distributionHubQuery() {
+async function distributionHubQuery() {
   // find all distribution hub
-  distributionHub
+  return distributionHub
     .find({ name: { $exists: true } })
     .then((hub) => {
+      // Get the name of the distribution hub
+      console.log(hub);
       return hub;
     })
     .catch((err) => {
