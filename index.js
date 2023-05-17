@@ -199,12 +199,14 @@ const product = require("./src/routes/product");
 const cart = require("./src/routes/cart");
 const vendor = require("./src/routes/vendor");
 const shipper = require("./src/routes/shipper");
+const user = require("./src/routes/user");
 // route
 app.use("/signup", signup);
 app.use("/product", product);
 app.use("/cart", cart);
 app.use("/vendor", checkPermission("vendor"), vendor);
 app.use("/shipper", shipper);
+app.use("/user", user);
 
 // static route
 app.get("/about", (req, res) => res.render("static_about"));
