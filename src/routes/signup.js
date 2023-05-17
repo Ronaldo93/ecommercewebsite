@@ -81,7 +81,6 @@ router.get("/", (req, res) => {
 // @desc render signup page for customer
 // @access public
 router.get("/customer", (req, res) => {
-  req.body.role = "customer";
   res.render("signup_customer");
 });
 
@@ -89,7 +88,6 @@ router.get("/customer", (req, res) => {
 // @desc render signup page for vendor
 // @access public
 router.get("/vendor", (req, res) => {
-  req.body.role = "vendor";
   res.render("signup_vendor");
 });
 
@@ -97,9 +95,7 @@ router.get("/vendor", (req, res) => {
 // @desc render signup page for shipper (use async await to get distribution hub list)
 // @access public
 router.get("/shipper", async (req, res) => {
-  req.body.role = "shipper";
   let distributionHub = await distributionHubQuery();
-  console.log(distributionHub);
   res.render("signup_shipper", { distributionHub: distributionHub });
 });
 
