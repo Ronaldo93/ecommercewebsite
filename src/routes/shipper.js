@@ -13,7 +13,8 @@ router.get("/:distributionHubname", async (req, res) => {
   const hub = distributionHubname.replace("-", " ");
   console.log(hub);
   // Find the id of the distribution hub
-  const finalhub = await distributionHub.findOne({ name: hub }).then((hub) => {
+  const finalhub = await distributionHub.findOne({ name: hub })
+  .then((hub) => {
     if (hub) {
       console.log(hub._id);
       return hub._id;
@@ -66,19 +67,26 @@ router.get("/:distributionHubname/:id", (req, res) => {
 router.post("/:distributionHubname/:id", (req, res) => {
   const { distributionHubname, id } = req.params;
 
-  const hub = distributionHubname;
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ['order_status'];
+  const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
 
-  order
-    .findByIdAndDelete(id)
-    .then((product) => {
-      if (!product) {
-        return res.send("Not found any product matching the ID!");
-      }
-      res.redirect(req.baseUrl + "/" + hub);
+  if (!isValidOperation) {
+    return res.send({ error: 'Invalid updates!' });
+  }
+
+  const updatedOrder = { order_status: req.body.order_status };
+
+  order.findByIdAndUpdate(id, updatedOrder, {
+      new: true,
+      runValidators: true,
     })
-    .catch((error) => {
-      console.log("Error retrieving orders:", error);
-      res.render("error", { message: "Error retrieving orders" });
-    });
+    .then(order => {
+      if (!order) {
+        return res.send('Not found any order matching the ID!');
+      }
+      res.redirect('/shipper/' + distributionHubname);
+    })
+    .catch(error => res.send(error));
 });
 module.exports = router;

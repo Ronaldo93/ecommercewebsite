@@ -25,33 +25,35 @@
             <th>Status</th>
             <th>Update</th>
           </tr>
-          <% orders.forEach(function(order) { %>
-          <tr>
-            <td><%= order.productTitle %></td>
-            <td><%= order.productPrice %></td>
-            <td><%= order.userName %></td>
-            <td><%= order.productId %></td>
-            <td><%= order.distributionHub.name %></td>
-            <td><%= order.address %></td>
-            <td>
-              <img
-                src="<%= order.productThumbnail %>"
-                alt="product"
-                width="100px"
-                height="100px"
-              />
-            </td>
-            <td><%=order.order_status%></td>
-            <td>
-              <!-- ref to name field in the object -->
-              <a
-                class="update-button"
-                href="/shipper/<%= order.distributionHub.name.replace(' ', '-') %>/<%= order._id %>"
-                >Update</a
-              >
-            </td>
-          </tr>
-          <% }); %>
+          <% orders.forEach(function(order) { 
+            if (order.order_status.toLowerCase() == 'active'){%>
+              <tr>
+                <td><%= order.productTitle %></td>
+                <td><%= order.productPrice %></td>
+                <td><%= order.userName %></td>
+                <td><%= order.productId %></td>
+                <td><%= order.distributionHub.name %></td>
+                <td><%= order.address %></td>
+                <td>
+                  <img
+                    src="<%= order.productThumbnail %>"
+                    alt="product"
+                    width="100px"
+                    height="100px"
+                  />
+                </td>
+                <td><%=order.order_status%></td>
+                <td>
+                  <!-- ref to name field in the object -->
+                  <a
+                    class="update-button"
+                    href="/shipper/<%= order.distributionHub.name.replace(' ', '-') %>/<%= order._id %>"
+                    >Update</a
+                  >
+                </td>
+              </tr>
+
+          <% }}); %>
         </table>
         <% } else { %>
         <p>User not found.</p>

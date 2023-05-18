@@ -24,13 +24,20 @@
     </div>
     <form action="/shipper/<%= product.distributionHub.name.replace(' ', '-') %>/<%= product._id %>" method="POST">
       <!-- submit the id  -->
-      <input type="hidden" name="_id" value="<%= product._id %>">
+      <!-- <input type="hidden" name="_id" value="<%= product._id %>"> -->
+      <!-- <input type="hidden" name="productTitle" value="<%= product.productTitle %>">
+      <input type="hidden" name="productPrice" value="<%= product.productPrice %>">
+      <input type="hidden" name="productThumbnail" value="<%= product.productThumbnail %>">
+      <input type="hidden" name="userName" value="<%= product.userName %>">
+      <input type="hidden" name="productId" value="<%= product.productId %>">
+      <input type="hidden" name="distributionHubname" value="<%= product.distributionHubname %>">
+      <input type="hidden" name="address" value="<%= product.address %>"> -->
       <div class="status">
         <label for="order_status">Status:</label>
         <select name="order_status" required>
           <option value=""><%= product.order_status %></option>
-          <option value="Delivered" <%= product.order_status === 'delivered' ? 'selected' : '' %>>Delivered</option>
-          <option value="Canceled" <%= product.order_status === 'canceled' ? 'selected' : '' %>>Canceled</option>
+          <option value="delivered" <%= product.order_status === 'delivered' ? 'selected' : '' %>>Delivered</option>
+          <option value="canceled" <%= product.order_status === 'canceled' ? 'selected' : '' %>>Canceled</option>
         </select>
       </div>
       <div id="btn-container">
