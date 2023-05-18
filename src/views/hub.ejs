@@ -7,6 +7,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/hub.css" />
     <link rel="stylesheet" href="/css/global.css " />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <main>
@@ -14,44 +20,44 @@
         <% if (orders.length > 0) { %>
         <h2>User Information:</h2>
         <table>
-          <tr>
-            <th>Product Title</th>
-            <th>Product Price</th>
-            <th>User Name</th>
-            <th>Product ID</th>
-            <th>Distribution Hub</th>
-            <th>Address</th>
-            <th>Thumbnail</th>
-            <th>Status</th>
-            <th>Update</th>
+          <tr class="container">
+            <th class="col-2">Product Title</th>
+            <th class="col-1">Product Price</th>
+            <th class="col-1">User Name</th>
+            <th class="col-1">Product ID</th>
+            <th class="col-1">Distribution Hub</th>
+            <th class="col-3">Address</th>
+            <th class="col-1">Thumbnail</th>
+            <th class="col-1">Status</th>
+            <th class="col-1">Update</th>
           </tr>
-          <% orders.forEach(function(order) { 
-            if (order.order_status.toLowerCase() == 'active'){%>
-              <tr>
-                <td><%= order.productTitle %></td>
-                <td><%= order.productPrice %></td>
-                <td><%= order.userName %></td>
-                <td><%= order.productId %></td>
-                <td><%= order.distributionHub.name %></td>
-                <td><%= order.address %></td>
-                <td>
-                  <img
-                    src="<%= order.productThumbnail %>"
-                    alt="product"
-                    width="100px"
-                    height="100px"
-                  />
-                </td>
-                <td><%=order.order_status%></td>
-                <td>
-                  <!-- ref to name field in the object -->
-                  <a
-                    class="update-button"
-                    href="/shipper/<%= order.distributionHub.name.replace(' ', '-') %>/<%= order._id %>"
-                    >Update</a
-                  >
-                </td>
-              </tr>
+          <% orders.forEach(function(order) { if
+          (order.order_status.toLowerCase() == 'active'){%>
+          <tr class="container">
+            <td class="col-2"><%= order.productTitle %></td>
+            <td class="col-1"><%= order.productPrice %></td>
+            <td class="col-1"><%= order.userName %></td>
+            <td class="col-1"><%= order.productId %></td>
+            <td class="col-1"><%= order.distributionHub.name %></td>
+            <td class="col-3"><%= order.address %></td>
+            <td class="col-1">
+              <img
+                src="<%= order.productThumbnail %>"
+                alt="product"
+                width="100px"
+                height="100px"
+              />
+            </td>
+            <td class="col-1"><%=order.order_status%></td>
+            <td class="col-1">
+              <!-- ref to name field in the object -->
+              <a
+                class="update-button"
+                href="/shipper/<%= order.distributionHub.name.replace(' ', '-') %>/<%= order._id %>"
+                >Update</a
+              >
+            </td>
+          </tr>
 
           <% }}); %>
         </table>
@@ -60,5 +66,10 @@
         <% } %>
       </div>
     </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

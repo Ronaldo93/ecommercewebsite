@@ -16,28 +16,30 @@ router.get("/addproduct", checkPermission("vendor"), async (req, res) => {
       return user._id;
     })
     .catch((error) => console.log(error.message));
-  res.render("add_product", { userid: userid });
+  res.render("add_product", {
+    userid: userid,
+    authenticated: req.isAuthenticated(),
+  });
   // res.render("add_product");
 });
 
 // @route GET /vendor/viewproduct
 // @desc render all product from a vendor
 // @access private
-router.get("/viewproduct", checkPermission("vendor"),(req, res) => {
-//   Product.find()
-//     .then((products) => {
-//       res.render("view_product", { products: products });
-//     })
-//     .catch((error) => console.log(error.message));
-// }
-  Product.find({vendor: req.user._id})
+router.get("/viewproduct", checkPermission("vendor"), (req, res) => {
+  //   Product.find()
+  //     .then((products) => {
+  //       res.render("view_product", { products: products });
+  //     })
+  //     .catch((error) => console.log(error.message));
+  // }
+  Product.find({ vendor: req.user._id })
+    .populate("vendor")
     .then((products) => {
       res.render("view_product", { products: products });
-    }
-    )
+    })
     .catch((error) => console.log(error.message));
-}
-);
+});
 
 //@route POST /vendor/addproduct
 //@desc add new product
