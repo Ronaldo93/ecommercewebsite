@@ -1,0 +1,40 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/signup_demo.css" />
+    <title>Shipper Signup</title>
+  </head>
+  <body>
+    <h2>Shipper Signup Form</h2>
+    <form action="/signup/new" method="post" enctype="multipart/form-data">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required /><br />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required /><br />
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required /><br />
+
+      <input type="hidden" id="role" name="role" value="shipper" /><br />
+
+      <!-- a group of selection from querying the distributionHub -->
+      <label for="distributionHub">Select a Distribution Hub:</label>
+      <!-- the name of the select = the part after req.body (in this case - req.body.distributionHub) -->
+      <!-- only if using expressjs + node -->
+      <select id="distributionHub" name="distributionHub">
+        <% for (let i = 0; i < distributionHub.length; i++) { %>
+        <option value="<%= distributionHub[i]._id %>">
+          <%= distributionHub[i].name %>
+        </option>
+        <% } %></select
+      ><br />
+      <h3>Upload Profile image (optional)</h3>
+      <label for="image">Profile Image:</label>
+      <input type="file" id="image" name="image" /><br />
+      <input type="submit" value="Signup" />
+    </form>
+  </body>
+</html>

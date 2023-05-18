@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/hub.css" />
+    <link rel="stylesheet" href="/css/global.css " />
+  </head>
+  <body>
+    <main>
+      <div id="searchResults">
+        <% if (orders.length > 0) { %>
+        <h2>User Information:</h2>
+        <table>
+          <tr>
+            <th>Product Title</th>
+            <th>Product Price</th>
+            <th>User Name</th>
+            <th>Product ID</th>
+            <th>Distribution Hub</th>
+            <th>Address</th>
+            <th>Thumbnail</th>
+            <th>Status</th>
+            <th>Update</th>
+          </tr>
+          <% orders.forEach(function(order) { %>
+          <tr>
+            <td><%= order.productTitle %></td>
+            <td><%= order.productPrice %></td>
+            <td><%= order.userName %></td>
+            <td><%= order.productId %></td>
+            <td><%= order.distributionHub.name %></td>
+            <td><%= order.address %></td>
+            <td>
+              <img
+                src="<%= order.productThumbnail %>"
+                alt="product"
+                width="100px"
+                height="100px"
+              />
+            </td>
+            <td><%=order.order_status%></td>
+            <td>
+              <!-- ref to name field in the object -->
+              <a
+                class="update-button"
+                href="/shipper/<%= order.distributionHub.name.replace(' ', '-') %>/<%= order._id %>"
+                >Update</a
+              >
+            </td>
+          </tr>
+          <% }); %>
+        </table>
+        <% } else { %>
+        <p>User not found.</p>
+        <% } %>
+      </div>
+    </main>
+  </body>
+</html>

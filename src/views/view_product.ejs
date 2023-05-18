@@ -1,67 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>View Product</title>
-       <!-- Favicon -->
-   <link rel="icon" href="image/logo.JPG" type="image/png" />
-  
-   <!--font-awesome link-->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="image/logo.JPG" type="image/png" />
 
-   <!--css link-->
-   <link rel="stylesheet" href="/css/global.css ">
-    <link rel="stylesheet" href="/css/view_product.css">
+    <!--font-awesome link-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!--css link-->
+    <link rel="stylesheet" href="/css/global.css " />
+    <link rel="stylesheet" href="/css/view_product.css" />
     <script src="/js/view_product.js"></script>
-</head>
-<body>
-<!--Header section -->
-<header>
-  <a href="#" class="logo"><img src="image/logo.JPG" alt="store logo image" class="logoimg">Shoes or sủa</a>
-  <nav class="navbar"> 
-      <a href="#">Home</a>
-      <a class="active" href="#">Shop</a>
-      <a href="#">Blog</a>
-      <a href="#">About</a>
-      <a href="#">Event</a>
-      <a href="#">FAQ</a>
-  </nav>
-  <div class="icons">
-      <i class="fas fa-bars" id="menu-bars"></i>
-      <i class="fas fa-search" id="search-icon"></i>
-      <a href="#" class="fas fa-heart" ></a>
-      <a href="#" class="fas fa-shopping-cart" ></a>
-      <i class="fas fa-user" id="login-btn"></i>
-  </div>
-
- <!--User login form-->
-  <div class="login-form-container">
-      <div id="close-login-btn" class="fas fa-times">
-
+  </head>
+  <body>
+    <!--Header section -->
+    <header>
+      <a href="#" class="logo"
+        ><img
+          src="image/logo.JPG"
+          alt="store logo image"
+          class="logoimg"
+        />Shoes or sủa</a
+      >
+      <nav class="navbar">
+        <a href="/vendor/addproduct">Add product</a>
+        <a class="active" href="#">View product</a>
+      </nav>
+      <div class="icons">
+        <i class="fas fa-bars" id="menu-bars"></i>
+        <i class="fas fa-user" id="login-btn"></i>
       </div>
-      <form action="">
+
+      <!--User login form-->
+      <div class="login-form-container">
+        <div id="close-login-btn" class="fas fa-times"></div>
+        <form action="">
           <h3>sign in</h3>
           <span>username</span>
-          <input type="email" name="" class="box" placeholder="enter email" id="">
+          <input
+            type="email"
+            name=""
+            class="box"
+            placeholder="enter email"
+            id=""
+          />
           <span>password</span>
-          <input type="password" name="" class="box" placeholder="enter password" id="">
+          <input
+            type="password"
+            name=""
+            class="box"
+            placeholder="enter password"
+            id=""
+          />
           <div class="checkbox">
-              <input type="checkbox" name="" id="remember-me">
-              <label for="remember-me">remember me</label>
+            <input type="checkbox" name="" id="remember-me" />
+            <label for="remember-me">remember me</label>
           </div>
-          <input type="submit" value="sign in" class="btn">
+          <input type="submit" value="sign in" class="btn" />
           <p>forget password?<a href="#">click here</a></p>
           <p>do not have account?<a href="#">create one</a></p>
-      </form>
-  </div>
-</header>
+        </form>
+      </div>
+    </header>
 
+  <main>
     <h1>Products</h1>
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search by title...">
-        <button onclick="searchProducts()">Search</button>
+      <input type="text" id="searchInput" placeholder="Search by title..." />
+      <button onclick="searchProducts()">Search</button>
     </div>
     <table>
       <tr>
@@ -72,28 +85,29 @@
         <th>Vendor</th>
       </tr>
       <% products.forEach(function(product) { %>
-        <tr>
-          <td><img src="<%= product.thumbnail %>" alt="productss"></td>
-          <td><%= product.price %></td>
-          <td><%= product.title %></td>
-          <td><%= product.description %></td>
-          <td><%= product.vendor %></td>
-        </tr>
+      <tr>
+        <td><img src="<%= product.thumbnail %>" alt="productss" /></td>
+        <td><%= product.price %></td>
+        <td><%= product.title %></td>
+        <td><%= product.description %></td>
+        <td><%= product.vendor %></td>
+      </tr>
       <% }); %>
     </table>
-     <!--Fotter-->
- <section class="fotter">
-  <nav class="navbar"> 
-      <a href="#">About Us</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms</a>
-      <a href="#">Copyright</a>
-      <a href="#">Contact Us </a>
-  </nav>
-</section>
+  </main>
+    <!--Fotter-->
+    <section class="fotter">
+      <nav class="navbar" id="navbar">
+        <a href="#">About Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="#">Copyright</a>
+        <a href="#">Contact Us </a>
+      </nav>
+    </section>
 
-<!--js link-->
-<script src="/js/script.js"></script>
-<script src="/js/view_product.js"></script>
-</body>
+    <!--js link-->
+    <script src="/js/script.js"></script>
+    <script src="/js/view_product.js"></script>
+  </body>
 </html>

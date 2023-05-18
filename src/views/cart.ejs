@@ -1,55 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cart</title>
-    <link rel="stylesheet" href="/css/cart.css">
-    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/cart.css" />
+    <link rel="stylesheet" href="/css/global.css" />
     <script src="/js/cart.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Cart</h1>
-    
+
     <form id="searchForm">
-        <label for="userName">Search by UserName:</label>
-        <input type="text" id="userName" name="userName" required>
-        <button type="submit">Search</button>
+      <label for="userName">Search by UserName:</label>
+      <input type="text" id="userName" name="userName" required />
+      <button type="submit">Search</button>
     </form>
 
     <div id="searchResults">
-        <% if (Cart.length > 0) { %>
-            <h2>User Information:</h2>
-            <table>
-                <tr>
-                    <th>Product Title</th>
-                    <th>Product Price</th>
-                    <th>User Name</th>
-                    <th>Product ID</th>
-                    <th>Distribution Hub</th>
-                    <th>Address</th>
-                    <th>Thumbnail</th>
-                    <th>Order</th>
-                    <th>Delete</th>
-                </tr>
-                <% Cart.forEach(function(cart) { %>
-                    <tr>
-                        <td><%= cart.productTitle %></td>
-                        <td><%= cart.productPrice %></td>
-                        <td><%= cart.userName %></td>
-                        <td><%= cart.productId %></td>
-                        <td><%= cart.productDistributionHub %></td>
-                        <td><%= cart.address %></td>
-                        <td><img src="<%= cart.productThumbnail %>" alt="product" width="100px" height="100px"></td>
-                        <td><a href="/cart/<%= cart._id %>/order" class="btn">Order</a></td>
-                        <td><a href="/cart/<%= cart._id %>/delete" class="btn">Delete</a></td>
-                    </tr>
-                <% }); %>
-            </table>
-        <% } else { %>
-            <p>User not found.</p>
-        <% } %>
+      <% if (Cart.length > 0) { %>
+      <h2>User Information:</h2>
+      <table>
+        <tr>
+          <th>Product Title</th>
+          <th>Product Price</th>
+          <th>User Name</th>
+          <th>Product ID</th>
+          <th>Distribution Hub</th>
+          <th>Address</th>
+          <th>Thumbnail</th>
+          <th>Order</th>
+          <th>Delete</th>
+        </tr>
+        <% Cart.forEach(function(cart) { %>
+        <tr>
+          <td><%= cart.productTitle %></td>
+          <td><%= cart.productPrice %></td>
+          <td><%= cart.userName %></td>
+          <td><%= cart.productId %></td>
+          <td><%= cart.distributionHubname %></td>
+          <td><%= cart.address %></td>
+          <td>
+            <img
+              src="<%= cart.productThumbnail %>"
+              alt="product"
+              width="100px"
+              height="100px"
+            />
+          </td>
+          <td><a href="/cart/<%= cart._id %>/order" class="btn">Order</a></td>
+          <td><a href="/cart/<%= cart._id %>/delete" class="btn">Delete</a></td>
+        </tr>
+        <% }); %>
+      </table>
+      <% } else { %>
+      <table>
+        <tr>
+          <th>Product Title</th>
+          <th>Product Price</th>
+          <th>User Name</th>
+          <th>Product ID</th>
+          <th>Distribution Hub</th>
+          <th>Address</th>
+          <th>Thumbnail</th>
+          <th>Order</th>
+          <th>Delete</th>
+        </tr>
+      </table>
+      <% } %>
     </div>
-</body>
+  </body>
 </html>

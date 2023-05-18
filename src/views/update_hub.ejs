@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Status</title>
+  <link rel="stylesheet" href="/css/update_hub.css">
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+<body>
+  <main>
+    <h1>Update Status</h1>
+    <div id="img">
+      <img src="<%= product.productThumbnail %>" alt="Product Image">
+    </div>
+    <div class="info">
+      <div><strong>Title:</strong> <%= product.productTitle %></div>
+      <div><strong>Price:</strong> <%= product.productPrice %></div>
+      <div><strong>User Name:</strong> <%= product.userName %></div>
+      <div><strong>Product ID:</strong> <%= product.productId %></div>
+      <div><strong>Distribution Hub:</strong> <%= product.distributionHubname %></div>
+      <div><strong>Address:</strong> <%= product.address %></div>
+    </div>
+    <form action="/shipper/<%= product.distributionHub.name.replace(' ', '-') %>/<%= product._id %>" method="POST">
+      <!-- submit the id  -->
+      <input type="hidden" name="_id" value="<%= product._id %>">
+      <div class="status">
+        <label for="order_status">Status:</label>
+        <select name="order_status" required>
+          <option value=""><%= product.order_status %></option>
+          <option value="Delivered" <%= product.order_status === 'delivered' ? 'selected' : '' %>>Delivered</option>
+          <option value="Canceled" <%= product.order_status === 'canceled' ? 'selected' : '' %>>Canceled</option>
+        </select>
+      </div>
+      <div id="btn-container">
+        <input type="submit" value="Update" class="btn">
+        <a href="/shipper/<%= product.distributionHub.name.replace(' ', '-') %>" class="btn">Return</a>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

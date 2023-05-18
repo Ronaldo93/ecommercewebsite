@@ -1,0 +1,33 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/signup_demo.css" />
+    <title>Customer Signup</title>
+  </head>
+  <body>
+    <h2>Customer Signup Form</h2>
+    <form action="/signup/new" method="post" enctype="multipart/form-data">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required /><br />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required /><br />
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required /><br />
+
+      <label for="address">Address:</label>
+      <input type="text" id="customeraddress" name="customeraddress" /><br />
+
+      <!-- hidden role -->
+      <input type="hidden" id="role" name="role" value="customer" /><br />
+      
+      <h3>Upload Profile image (optional)</h3>
+      <label for="image">Profile Image:</label>
+      <input type="file" id="image" name="image" /><br />
+      <input type="submit" value="Signup" />
+    </form>
+  </body>
+</html>

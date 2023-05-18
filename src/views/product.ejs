@@ -1,117 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script defer src="/js/product.js"></script>
-  <script defer src="/js/search.js"></script>
-     <!-- Favicon -->
-     <link rel="icon" href="image/logo.JPG" type="image/png" />
-  
-     <!--font-awesome link-->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-     <!--css link-->
-  <link rel="stylesheet" href="/css/global.css ">
-  <link rel="stylesheet" href="/css/product.css">
-  <title>Document</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="/js/product.js"></script>
+    <script defer src="/js/search.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" href="/image/logo.JPG" type="image/png" />
 
-<body>
-<!--Header section -->
-<header>
-  <a href="#" class="logo"><img src="image/logo.JPG" alt="store logo image" class="logoimg">Shoes or sủa</a>
-  <nav class="navbar"> 
-      <a href="#">Home</a>
-      <a class="active" href="#">Shop</a>
-      <a href="#">Blog</a>
-      <a href="#">About</a>
-      <a href="#">Event</a>
-      <a href="#">FAQ</a>
-  </nav>
-  <div class="icons">
-      <i class="fas fa-bars" id="menu-bars"></i>
-      <i class="fas fa-search" id="search-icon"></i>
-      <a href="#" class="fas fa-heart" ></a>
-      <a href="#" class="fas fa-shopping-cart" ></a>
-      <i class="fas fa-user" id="login-btn"></i>
-  </div>
+    <!--font-awesome link-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
- <!--User login form-->
-  <div class="login-form-container">
-      <div id="close-login-btn" class="fas fa-times">
+    <!--css link-->
+    <link rel="stylesheet" href="/css/global.css " />
+    <link rel="stylesheet" href="/css/product.css" />
+    <title>Document</title>
+  </head>
 
+  <body>
+    <!--Header section -->
+    <header>
+      <a href="#" class="logo"
+        ><img
+          src="image/logo.JPG"
+          alt="store logo image"
+          class="logoimg"
+        />Shoes or sủa</a
+      >
+      <nav class="navbar">
+        <a href="/">Home</a>
+        <a class="active" href="#">Shop</a>
+      </nav>
+      <div class="icons">
+        <i class="fas fa-bars" id="menu-bars"></i>
+        <a href="/cart" class="fas fa-shopping-cart"></a>
+        <i class="fas fa-user" id="login-btn"></i>
       </div>
-      <form action="">
+
+      <!--User login form-->
+      <div class="login-form-container">
+        <div id="close-login-btn" class="fas fa-times"></div>
+        <form action="">
           <h3>sign in</h3>
           <span>username</span>
-          <input type="email" name="" class="box" placeholder="enter email" id="">
+          <input
+            type="email"
+            name=""
+            class="box"
+            placeholder="enter email"
+            id=""
+          />
           <span>password</span>
-          <input type="password" name="" class="box" placeholder="enter password" id="">
+          <input
+            type="password"
+            name=""
+            class="box"
+            placeholder="enter password"
+            id=""
+          />
           <div class="checkbox">
-              <input type="checkbox" name="" id="remember-me">
-              <label for="remember-me">remember me</label>
+            <input type="checkbox" name="" id="remember-me" />
+            <label for="remember-me">remember me</label>
           </div>
-          <input type="submit" value="sign in" class="btn">
+          <input type="submit" value="sign in" class="btn" />
           <p>forget password?<a href="#">click here</a></p>
           <p>do not have account?<a href="#">create one</a></p>
-      </form>
-  </div>
-</header>
-
-  <div class="container">
-    <div class="filter">
-      <div id="search">
-        <h1>ProductJs Search</h1>
-        <input type="text" id="search-input" placeholder="Enter title...">
-        <button id="search-button">Search</button>
-      </div>
-      <div id="form">
-        <form id="price-range-form">
-          <h4>Price:</h4>
-          <div>
-            <label for="min-price" class="form-label">Min price: </label>
-            <input type="number" class="form-input" id="min-price" step="1" placeholder="Min price">
-          </div>
-          <div>
-            <label for="max-price" class="form-label">Max price: </label>
-            <input type="number" class="form-input" id="max-price" step="1" placeholder="Max price">
-          </div>
         </form>
       </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <div id="display-items-div">
-          <% products.forEach(function(product){ %>
-            <div class="product-card" data-price="<%= product.price %>">
-              <b><%= product.title %></b><br>
-              <img src="<%= product.thumbnail %>" alt="productss" width="100%" height="300px">
-              <div>
-                <b><%= product.price %> $</b>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="filter">
+          <div id="search">
+            <h1>Product Search</h1>
+            <input type="text" id="search-input" placeholder="Enter title..." />
+            <button id="search-button">Search</button>
+          </div>
+          <div id="form">
+            <form id="price-range-form">
+              <div id="find">
+                <div>
+                  <label for="min-price" class="form-label">Min price: </label>
+                  <input
+                    type="number"
+                    class="form-input"
+                    id="min-price"
+                    step="4"
+                    placeholder="Min price"
+                  />
+                </div>
+                <div>
+                  <label for="max-price" class="form-label">Max price: </label>
+                  <input
+                    type="number"
+                    class="form-input"
+                    id="max-price"
+                    step="1"
+                    placeholder="Max price"
+                  />
+                </div>
               </div>
-              <div class="button">
-                <a href="http://localhost:3000/product/<%= product._id %>">View ProductJs</a>
+            </form>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div id="display-items-div">
+              <% products.forEach(function(product){ %>
+              <div class="product-card" data-price="<%= product.price %>">
+                <img
+                  src="<%= product.thumbnail %>"
+                  alt="products"
+                  width="100%"
+                  height="300px"
+                />
+                <div class="name"><b><%= product.title %></b></div>
+                
+                <div class="text-limit">
+                  <%= product.description %>
+                </div>
+                <div class="price">
+                  <b><%= product.price %> $</b>
+                </div>
+                <div class="btn">
+                  <a href="/product/<%= product._id %>"
+                    >View Product</a
+                  >
+                </div>
               </div>
+              <% }); %>
             </div>
-          <% }); %>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-     <!--Fotter-->
-     <section class="fotter">
-      <nav class="navbar"> 
-          <a href="#">About Us</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms</a>
-          <a href="#">Copyright</a>
-          <a href="#">Contact Us </a>
+    </main>
+    <!--Fotter-->
+    <section class="fotter">
+      <nav class="navbar" id="navbar">
+        <a href="#">About Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="#">Copyright</a>
+        <a href="#">Contact Us </a>
       </nav>
     </section>
-    
+
     <!--js link-->
     <script src="/js/script.js"></script>
-</body>
+  </body>
 </html>

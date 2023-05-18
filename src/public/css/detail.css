@@ -4,18 +4,25 @@ body {
   margin: 0;
   padding: 0;
 }
+main {
+  display: flex;
+  align-items: center;
+}
+
 
 /* Style for the container */
 #contain {
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
   margin: 50px;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
+
 }
 
 /* Style for the product image */
 #contain img {
-  width:  80%;
+  width: 80%;
   height: 500px;
   border-radius: 5px;
 }
@@ -73,7 +80,7 @@ div#img {
 
 /* Style for the user name input */
 #userName,
-#productDistributionHub,
+#distributionHubname,
 #quantity,
 #address {
   flex-grow: 1;
@@ -117,7 +124,7 @@ div#img {
     width: 100%;
   }
 
-  div#img{
+  div#img {
     width: 80%;
   }
   #contain img {

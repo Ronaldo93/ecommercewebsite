@@ -9,17 +9,17 @@
 //     }
 // }
 
-const {check, validationResult} = require("express-validator");
-function checkPassword (req, res, next) {
-    check('password', 'test').matches(passwordregex);
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
-    next();
+const { check, validationResult } = require("express-validator");
+function checkPassword(req, res, next) {
+  check("password", "test").matches(passwordregex);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
 }
 
-
-const passwordregex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$/;
+const passwordregex =
+  /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$/;
 
 module.exports = checkPassword;

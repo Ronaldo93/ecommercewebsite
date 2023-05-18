@@ -22,10 +22,21 @@ const order = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your product id"],
   },
-  productDistributionHub: {
-    type: String,
-    required: [true, "Please enter Distribution Hub"],
+  // productDistributionHub: {
+  //   type: String,
+  //   required: [true, "Please enter Distribution Hub"],
+  // },
+  // --> CHANGES TO THIS
+  distributionHub: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "distributionHub",
   },
+  // CONSIDER THIS
+  // distributionHubaddress: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "User",
+  // },
+  // ----------------
   address: {
     type: String,
     required: [true, "Please enter your address"],

@@ -1,70 +1,74 @@
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-th, td {
-    padding: 8px;
-    text-align: left;
-    border: 1px solid black;
-    text-align: center;
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid black;
+  text-align: center;
 }
 
 th:first-child,
 td:first-child {
-    border-left: 1px solid black;
+  border-left: 1px solid black;
 }
 
 th:last-child,
 td:last-child {
-    border-right: 1px solid black;
+  border-right: 1px solid black;
 }
 
 th {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 .btn {
-    display: inline-block;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
-
 
 /* Desktop devices */
 @media screen and (min-width: 1024px) {
-    /* Adjust table cell padding for desktop */
-    th, td {
-        padding: 12px;
-    }
+  /* Adjust table cell padding for desktop */
+  th,
+  td {
+    padding: 12px;
+  }
 }
 
 /* Tablet devices */
-@media screen  and (max-width: 1023px) {
-    th, td {
-        padding: 6px;
-    }
+@media screen and (max-width: 1023px) {
+  th,
+  td {
+    padding: 6px;
+  }
 }
 
 /* Smartphone devices */
 @media screen and (max-width: 768px) {
-    th, td {
-        padding: 4px;
-    }
+  th,
+  td {
+    padding: 4px;
+  }
 
-    th, td {
-        text-align: center;
-    }
-    .btn {
-        padding: 6px 12px;
-    }
+  th,
+  td {
+    text-align: center;
+  }
+  .btn {
+    padding: 6px 12px;
+  }
 }

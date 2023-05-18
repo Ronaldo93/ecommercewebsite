@@ -31,7 +31,7 @@ searchButton.addEventListener("click", searchProducts);
 
 // Add event listener to the search input for Enter key press
 var searchInput = document.getElementById("search-input");
-searchInput.addEventListener("keyup", function(event) {
+searchInput.addEventListener("keyup", function (event) {
   // Check if the Enter key is pressed
   if (event.keyCode === 13) {
     // Call the searchProducts function
