@@ -50,14 +50,14 @@ https://mdbootstrap.com/docs/standard/extended/profiles/ -->
                     class="img-fluid my-5"
                     style="width: 80px"
                   /> -->
-                  <% if (user.profile_picture) { %>
+                  <% if (profile_image) { %>
                   <img
-                    src="data:image/png;base64,<%- user.profile_picture %>"
+                    src="data:image/png;base64,<%- profile_image %>"
                     id="profile-picture"
                     alt="Avatar"
                     class="img-fluid my-5"
                   />
-                  <% } else { %>
+                  <% } else if (profile_image = "not found"){ %>
                   <div class="d-block mx-auto my-5" id="no-image">
                     <p>No image found</p>
                   </div>

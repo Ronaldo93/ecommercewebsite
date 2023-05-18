@@ -11,28 +11,33 @@ const User = require("../model/usermodel");
 const imageHandler = require("../middleware/image");
 
 // GET ROUTES
-// @route GET /logout
+// @route GET /user/logout
 // @desc logout user
 // @access public
 router.get("/logout", (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.redirect("/");
+  req.logout(function(err) {
+    if (err) { 
+      return next(err); 
     }
+    req.session.destroy(function (err) {
+      if (err) {
+       return next(err); 
+      }
+      res.redirect('/');
+    });
   });
 });
 
 // @route GET /user/profile
 // @desc render user profile page
 // @access private
-router.get("/profile", checkAuth, async (req, res) => {
+router.get("/profile", async (req, res) => {
+  let image = await findImageByUserID(req, res);
   if (req.user.role === "shipper") {
     let user = await User.findById(req.user._id).populate("distributionHub");
-    return res.render("user_profile", { user: user });
+    return res.render("user_profile", { user: user,  profile_image: image });
   }
-  res.render("user_profile", { user: req.user });
+  res.render("user_profile", { user: req.user, profile_image: image });
 });
 
 // @route POST /user/profile/updateImage
@@ -55,3 +60,12 @@ router.post(
   }
 );
 module.exports = router;
+
+
+async function findImageByUserID(req, res) {
+  let user = await User.findById(req.user._id);
+  if (user) {
+    return user.profile_picture;
+  }
+  return "not found";
+}

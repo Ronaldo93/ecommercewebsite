@@ -206,7 +206,7 @@ app.use("/product", product);
 app.use("/cart", cart);
 app.use("/vendor", checkPermission("vendor"), vendor);
 app.use("/shipper", shipper);
-app.use("/user", user);
+app.use("/user", checkAuth, user);
 
 // static route
 app.get("/about", (req, res) => res.render("static_about"));

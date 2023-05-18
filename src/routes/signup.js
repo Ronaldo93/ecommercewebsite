@@ -75,7 +75,7 @@ passport.use(
 // @desc render signup page
 // @access public
 router.get("/", (req, res) => {
-  res.render("signup_demo");
+  res.render("signup_redirect");
 });
 
 // @route GET /signup/customer
