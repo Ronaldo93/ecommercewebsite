@@ -1,3 +1,11 @@
+/*  RMIT University Vietnam
+  Course: COSC2430 Web Programming
+  Semester: 2023A
+  Assessment: Assignment 2
+  Author: BrotherHood group 
+  ID: Bao Tuan (s3977886),Phu Chau(s3975133),Tuan Minh(s3978609),Tuan Kiet(s3978885),Minh Hien(s3978807)
+  Acknowledgement: https://www.w3schools.com/ */
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -173,12 +181,23 @@ app.post(
     console.log(req.body);
     next();
   },
-  passport.authenticate("login", {
-    failureRedirect: "/failed",
-    successRedirect: `/success?message=success!%20You%20logged%20in!`,
-    failureMessage: true,
-    successMessage: true,
-  })
+  (req, res, next) => {
+    passport.authenticate("login", {
+      failureRedirect: "/failed",
+      // successRedirect: `/success?message=success!%20You%20logged%20in!`,
+      failureMessage: true,
+      successMessage: true,
+    })(req, res, next);
+  },
+  (req, res) => {
+    if (req.user.role === "shipper") {
+      return res.redirect("/shipper");
+    } else if (req.user.role === "vendor") {
+      return res.redirect("/vendor");
+    } else {
+      return res.redirect("/user");
+    }
+  }
 );
 
 // END OF AUTH =========================
