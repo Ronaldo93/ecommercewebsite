@@ -23,7 +23,8 @@ router.post("/add", (req, res) => {
 // @desc get all products in cart
 // @access public
 router.get("/", (req, res) => {
-  Cart.find()
+  let username = req.user.username;
+  Cart.find({ userName: username })
     .then((Cart) => {
       res.render("cart", { Cart: Cart });
     })
@@ -70,7 +71,7 @@ router.get("/:id/order", (req, res) => {
       if (!product) {
         return res.send("Not found any product matching the ID!");
       }
-      res.render("order_product", { product });
+      res.render("order_product", { product});
     })
     .catch((error) => res.send(error));
 });

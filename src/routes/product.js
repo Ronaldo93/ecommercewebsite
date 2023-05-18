@@ -2,16 +2,17 @@ const express = require("express");
 const router = express.Router();
 
 const Product = require("../model/product");
+const User = require("../model/usermodel");
 
 //@route GET /product/:id
 //@desc render detail page
 //@access public
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  Product.findById(id)
+  let matchedProduct = await Product.findById(id)
     .then((matchedProduct) => {
       if (matchedProduct) {
-        res.render("detail", { product: matchedProduct });
+        return matchedProduct;
       } else {
         res.render("error", { message: "Product not found" });
       }
@@ -20,6 +21,11 @@ router.get("/:id", (req, res) => {
       console.log("Error retrieving product:", error);
       res.render("error", { message: "Error retrieving product" });
     });
+  if (req.user) {
+    let username = req.user.username;
+    return res.render("detail", { product: matchedProduct, username: username });
+  }
+  res.render("detail", { product: matchedProduct, username: null });
 });
 
 // @route GET /product

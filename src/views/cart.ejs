@@ -11,16 +11,8 @@
   </head>
   <body>
     <h1>Cart</h1>
-
-    <form id="searchForm">
-      <label for="userName">Search by UserName:</label>
-      <input type="text" id="userName" name="userName" required />
-      <button type="submit">Search</button>
-    </form>
-
     <div id="searchResults">
       <% if (Cart.length > 0) { %>
-      <h2>User Information:</h2>
       <table>
         <tr>
           <th>Product Title</th>

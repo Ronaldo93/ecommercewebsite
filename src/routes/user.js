@@ -61,7 +61,7 @@ router.post(
 );
 module.exports = router;
 
-
+// return base64 image
 async function findImageByUserID(req, res) {
   let user = await User.findById(req.user._id);
   if (user) {
