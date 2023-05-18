@@ -181,22 +181,33 @@ app.post(
     console.log(req.body);
     next();
   },
-    passport.authenticate("login", {
-      failureRedirect: "/failed",
-      // successRedirect: `/success?message=success!%20You%20logged%20in!`,
-      failureMessage: true,
-      successMessage: true,
-    }),
-  (req, res) => {
+  passport.authenticate("login", {
+    failureRedirect: "/failed",
+    // successRedirect: `/success?message=success!%20You%20logged%20in!`,
+    failureMessage: true,
+    successMessage: true,
+  }),
+  async (req, res) => {
     if (req.user.role === "shipper") {
-      return res.redirect("/shipper");
+      let hub = await fetchDistributionHub(req.user._id);
+      let finalhub = hub.replace(" ", "-");
+      return res.redirect(`/shipper/${finalhub}`);
     } else if (req.user.role === "vendor") {
-      return res.redirect("/vendor");
+      return res.redirect("/vendor/viewproduct");
     } else {
-      return res.redirect("/user");
+      return res.redirect("/product");
     }
   }
 );
+
+async function fetchDistributionHub(userid) {
+  return User.findOne({ _id: userid })
+    .populate("distributionHub")
+    .then((user) => {
+      console.log(user.distributionHub.name);
+      return user.distributionHub.name;
+    });
+}
 
 // END OF AUTH =========================
 
