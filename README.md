@@ -14,3 +14,4 @@ MongoDB. It is a work in progress.
 - [ ] Flash messages for ejs pages (optional)
 - [ ] Add User Detail Page
 - [ ] Handle update profile picture
+- [ ] Handle user logout route
