@@ -181,14 +181,12 @@ app.post(
     console.log(req.body);
     next();
   },
-  (req, res, next) => {
     passport.authenticate("login", {
       failureRedirect: "/failed",
       // successRedirect: `/success?message=success!%20You%20logged%20in!`,
       failureMessage: true,
       successMessage: true,
-    })(req, res, next);
-  },
+    }),
   (req, res) => {
     if (req.user.role === "shipper") {
       return res.redirect("/shipper");
