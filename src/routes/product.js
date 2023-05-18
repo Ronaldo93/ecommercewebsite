@@ -34,7 +34,7 @@ router.get("/:id", async (req, res) => {
 router.get("/", (req, res) => {
   Product.find()
     .then((products) => {
-      res.render("product", { products: products });
+      res.render("product", { products: products,  authenticated: req.isAuthenticated() });
     })
     .catch((error) => console.log(error.message));
 });

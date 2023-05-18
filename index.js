@@ -203,9 +203,9 @@ const user = require("./src/routes/user");
 // route
 app.use("/signup", signup);
 app.use("/product", product);
-app.use("/cart", cart);
-app.use("/vendor", checkPermission("vendor"), vendor);
-app.use("/shipper", shipper);
+app.use("/cart", checkAuth, cart);
+app.use("/vendor", checkAuth, checkPermission("vendor"), vendor);
+app.use("/shipper", checkAuth, checkPermission("shipper"), shipper);
 app.use("/user", checkAuth, user);
 
 // static route

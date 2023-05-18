@@ -1,4 +1,11 @@
-
+/*  RMIT University Vietnam
+  Course: COSC2430 Web Programming
+  Semester: 2023A
+  Assessment: Assignment 2
+  Author: BrotherHood group 
+  ID: Bao Tuan (s3977886),Phu Chau(s3975133),Tuan Minh(s3978609),Tuan Kiet(s3978885),Minh Hien(s3978807)
+  Acknowledgement: https://www.w3schools.com/ */
+  
 * {
   margin: 0;
   padding: 0;
@@ -154,61 +161,9 @@ body {
   background: #fff;
   color: #4c9900;
 }
-
-* Featured products styles */
-  .featured {
-    padding: 20px;
-  }
-  
-  .featured h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .product-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-  }
-  
-  .product {
-    border: 1px solid #ccc;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .product img {
-    max-width: 100%;
-  }
-  
-  .product h3 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-  
-  .product p {
-    font-size: 8px;
-    color: #999;
-    margin-bottom: 10px;
-  }
-  
-  .product a {
-    display: inline-block;
-    background-color: #f2420c;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 8px;
-    margin-top: 10px;
-  }
-  
-  .product a:hover {
-    background-color: #4c9900;
-  }
   
   .footer {
-    background-color: #f2f2f2;
+    background-color: #330000;
     padding: 20px;
     text-align: center;
   }
