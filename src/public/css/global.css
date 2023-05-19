@@ -402,6 +402,10 @@ header .icons #menu-bars {
   section {
     padding: 3rem 2rem;
   }
+  header .logo {
+    font-size: 20px;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -428,6 +432,9 @@ header .icons #menu-bars {
     margin: 1rem;
     font-size: 2rem;
     background: #e50914;
+  }
+  header .logo {
+    font-size: 15px;
   }
 }
 
