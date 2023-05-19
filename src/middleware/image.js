@@ -18,6 +18,7 @@ function imageHandler(req, res, next) {
 
   uploadFile(req, res, function (err) {
     console.log("Finished file upload");
+    console.log(req.file);
     if (err) {
       console.log("Error uploading file: " + err);
       req.uploadError = err;

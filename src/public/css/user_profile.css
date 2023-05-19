@@ -160,3 +160,9 @@
   width: 80px;
   box-sizing: border-box;
 }
+
+button {
+  position: relative;
+  top: 10px;
+  margin-bottom: 10px;
+}

@@ -23,15 +23,15 @@ const imageHandler = require("../middleware/image");
 // @desc logout user
 // @access public
 router.get("/logout", (req, res) => {
-  req.logout(function(err) {
-    if (err) { 
-      return next(err); 
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
     }
     req.session.destroy(function (err) {
       if (err) {
-       return next(err); 
+        return next(err);
       }
-      res.redirect('/');
+      res.redirect("/");
     });
   });
 });
@@ -43,7 +43,7 @@ router.get("/profile", async (req, res) => {
   let image = await findImageByUserID(req, res);
   if (req.user.role === "shipper") {
     let user = await User.findById(req.user._id).populate("distributionHub");
-    return res.render("user_profile", { user: user,  profile_image: image });
+    return res.render("user_profile", { user: user, profile_image: image });
   }
   res.render("user_profile", { user: req.user, profile_image: image });
 });
@@ -57,12 +57,12 @@ router.post(
   imageHandler,
   async (req, res) => {
     let update = await User.findByIdAndUpdate(req.user._id, {
-      image: req.body.imageBase64,
+      profile_picture: req.body.imageBase64,
     });
     if (update) {
+      console.log("updated");
       return res.redirect("/user/profile");
-    }
-    else {
+    } else {
       return res.send("Error updating image");
     }
   }
