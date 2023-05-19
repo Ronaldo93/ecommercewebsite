@@ -18,68 +18,68 @@
     <!--css link-->
     <link rel="stylesheet" href="/css/global.css " />
     <link rel="stylesheet" href="/css/product.css" />
-    <title>Document</title>
+    <title>Products</title>
   </head>
 
   <body>
-   <!--Header section -->
-   <header>
-    <a href="#" class="logo"
-      ><img
-        src="/image/logo.jpg"
-        alt="store logo image"
-        class="logoimg"
-      />ShoeTronics</a
-    >
-    <nav class="navbar">
-      <a href="/" class="">Home</a>
-      <a class="active" href="/product">Shop</a>
-    </nav>
-    <div class="icons">
-      <i class="fas fa-bars" id="menu-bars"></i>
-      <!-- show login button only if authenticated = false -->
-      <% if (!authenticated) { %>
-      <i class="fas fa-user" id="login-btn"></i>
-      <% } else { %>
-        <a href="/cart" class="fas fa-shopping-cart" ></a>
-      <a href="/user/profile">
-        <i class="fas fa-user"></i>
-      </a>
-      <a href="/user/logout" class="fas fa-sign-out-alt"></a>
-      <% } %>
-    </div>
+    <!--Header section -->
+    <header>
+      <a href="#" class="logo"
+        ><img
+          src="/image/logo.jpg"
+          alt="store logo image"
+          class="logoimg"
+        />ShoeTronics</a
+      >
+      <nav class="navbar">
+        <a href="/" class="">Home</a>
+        <a class="active" href="/product">Shop</a>
+      </nav>
+      <div class="icons">
+        <i class="fas fa-bars" id="menu-bars"></i>
+        <!-- show login button only if authenticated = false -->
+        <% if (!authenticated) { %>
+        <i class="fas fa-user" id="login-btn"></i>
+        <% } else { %>
+        <a href="/cart" class="fas fa-shopping-cart"></a>
+        <a href="/user/profile">
+          <i class="fas fa-user"></i>
+        </a>
+        <a href="/user/logout" class="fas fa-sign-out-alt"></a>
+        <% } %>
+      </div>
 
-    <!--User login form-->
-    <div class="login-form-container">
-      <div id="close-login-btn" class="fas fa-times"></div>
-      <form action="/login" method="post">
-        <h3>sign in</h3>
-        <span>username</span>
-        <input
-          type="text"
-          name="username"
-          class="box"
-          placeholder="Enter Username"
-          id="username"
-        />
-        <span>password</span>
-        <input
-          type="password"
-          name="password"
-          class="box"
-          placeholder="Enter Password"
-          id="password"
-        />
-        <!--            <div class="checkbox">-->
-        <!--                <input type="checkbox" name="" id="remember-me">-->
-        <!--                <label for="remember-me">remember me</label>-->
-        <!--            </div>-->
-        <input type="submit" value="sign in" class="btn" />
-        <!--            <p>forget password?<a href="#">click here</a></p>-->
-        <p>do not have account?<a href="/signup"> Create one</a></p>
-      </form>
-    </div>
-  </header>
+      <!--User login form-->
+      <div class="login-form-container">
+        <div id="close-login-btn" class="fas fa-times"></div>
+        <form action="/login" method="post">
+          <h3>sign in</h3>
+          <span>username</span>
+          <input
+            type="text"
+            name="username"
+            class="box"
+            placeholder="Enter Username"
+            id="username"
+          />
+          <span>password</span>
+          <input
+            type="password"
+            name="password"
+            class="box"
+            placeholder="Enter Password"
+            id="password"
+          />
+          <!--            <div class="checkbox">-->
+          <!--                <input type="checkbox" name="" id="remember-me">-->
+          <!--                <label for="remember-me">remember me</label>-->
+          <!--            </div>-->
+          <input type="submit" value="sign in" class="btn" />
+          <!--            <p>forget password?<a href="#">click here</a></p>-->
+          <p>do not have account?<a href="/signup"> Create one</a></p>
+        </form>
+      </div>
+    </header>
 
     <main>
       <div class="container">
@@ -128,17 +128,13 @@
                   height="300px"
                 />
                 <div class="name"><b><%= product.title %></b></div>
-                
-                <div class="text-limit">
-                  <%= product.description %>
-                </div>
+
+                <div class="text-limit"><%= product.description %></div>
                 <div class="price">
                   <b><%= product.price %> $</b>
                 </div>
                 <div class="btn">
-                  <a href="/product/<%= product._id %>"
-                    >View Product</a
-                  >
+                  <a href="/product/<%= product._id %>">View Product</a>
                 </div>
               </div>
               <% }); %>

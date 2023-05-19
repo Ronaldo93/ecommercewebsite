@@ -31,9 +31,17 @@ router.get("/:id", async (req, res) => {
     });
   if (req.user) {
     let username = req.user.username;
-    return res.render("detail", { product: matchedProduct, username: username });
+    return res.render("detail", {
+      product: matchedProduct,
+      username: username,
+      authenticated: req.isAuthenticated(),
+    });
   }
-  res.render("detail", { product: matchedProduct, username: null });
+  res.render("detail", {
+    product: matchedProduct,
+    username: null,
+    authenticated: req.isAuthenticated(),
+  });
 });
 
 // @route GET /product
@@ -42,7 +50,10 @@ router.get("/:id", async (req, res) => {
 router.get("/", (req, res) => {
   Product.find()
     .then((products) => {
-      res.render("product", { products: products,  authenticated: req.isAuthenticated() });
+      res.render("product", {
+        products: products,
+        authenticated: req.isAuthenticated(),
+      });
     })
     .catch((error) => console.log(error.message));
 });
