@@ -13,7 +13,9 @@ MongoDB. It is a work in progress.
 npm i
 ```
 - type the following command to run the server:
-```npm run dev
+```
+npm run dev
+```
 - The website is live at localhost:3000. Open the browser and navigate to the URL
 
 ## Testing Account:
