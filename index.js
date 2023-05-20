@@ -237,10 +237,10 @@ app.use("/shipper", checkAuth, checkPermission("shipper"), shipper);
 app.use("/user", checkAuth, user);
 
 // static route
-app.get("/about", (req, res) => res.render("static_about"));
-app.get("/contact", (req, res) => res.render("contact"));
-app.get("/privacy", (req, res) => res.render("static_privacy"));
-app.get("/help", (req, res) => res.render("static_help"));
+app.get("/about", (req, res) => res.render("static_about", {authenticated: req.isAuthenticated()}));
+
+app.get("/privacy", (req, res) => res.render("static_privacy", {authenticated: req.isAuthenticated()}));
+app.get("/help", (req, res) => res.render("static_help", {authenticated: req.isAuthenticated()}));
 
 // MISCELLANEOUS
 // Port: listening on 3000

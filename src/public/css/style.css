@@ -113,8 +113,8 @@ body {
 
 /* home */
 #ad {
-  background-image: url(../images/ad.png);
-  height: 90vh;
+  background-image: url(../image/background.jpg);
+  height: 120vh;
   width: 100%;
   background-position: center;
   background-size: cover;
@@ -137,6 +137,10 @@ body {
   line-height: 80px;
   margin-bottom: 20px;
   padding-bottom: 20px;
+}
+
+#ad h2 {
+  color: red;
 }
 #ad p {
   color: #fff;
