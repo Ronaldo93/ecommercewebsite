@@ -1,4 +1,7 @@
 # ecommercewebsite
+## Info
+- https://github.com/Ronaldo93/ecommercewebsite
+- Video submission: https://www.youtube.com/watch?v=5X-_1KUyc1Y
 
 ## How to use
 - Clone this repo
